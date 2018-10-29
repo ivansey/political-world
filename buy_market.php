@@ -2,6 +2,8 @@
 include('system/func.php');
 auth();
 banned($user);
+$id_market = $_GET['id'];
+$market = $conn->query("SELECT * FROM `market` WHERE `id` = " . $id_market . "")->fetch();
 if(isset($_POST['buy'])) {
 		$money = $market['price'] * $_POST['res'];
 		$type = $factory['type'];

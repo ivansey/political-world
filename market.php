@@ -13,7 +13,7 @@ while($i <= $sum) {
 	$market = $conn->query("SELECT * FROM `market` LIMIT " . $i . "," . $i2 . "")->fetch();
 	echo 'ID: ' . $market['id_user'] . ', тип: ' . $market['type'] . ', цена:' . $market['price'] . ', кол-во:' . $market['res'];
 	echo '
-		<form action="buy_market.php" method="post">
+		<form action="buy_market.php?id=' . $market['id'] . '" method="post">
 			<input type="text" name="res"> 
 			<input type="submit" name="buy" value="Купить">
 		</form>
