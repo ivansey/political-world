@@ -1,9 +1,9 @@
 <?php
 
-$host = "localhost";
-$db = "admin_game";
-$username = "admin_admin";
-$password = "nBwwgDyG0l";
+$host = "";
+$db = "";
+$username = "";
+$password = "";
 
 $dsn = "mysql:host=$host;dbname=$db";
 
