@@ -1,2 +1,6 @@
 # political-world
-Sourse code Political World (RU)
+Source code Political World (RU)
+
+Исходный код игры Political World
+
+Используется PHP 7
