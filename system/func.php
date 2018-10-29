@@ -1,62 +1,85 @@
 <?php
 require_once('db_connect.php');
+//include('economic.php');
 
-function text($m){
-$m = htmlspecialchars(stripslashes(trim($m)));
-	return $m;
-} 
-function name($userr){
-$ur = "$userr[tag]$userr[name]";
-return $ur;
-}
-function auth() {
-if(empty($_COOKIE["email"])) {
-header("Location: index.php"); exit; 
-}
+function text($m)
+{
+    $m = htmlspecialchars(stripslashes(trim($m)));
+    return $m;
 }
 
-function noauth() {
-if(!empty($_COOKIE["email"])) {
-header("Location: game.php"); exit; 
-}
+function name($userr)
+{
+    $ur = "$userr[tag]$userr[name]";
+    return $ur;
 }
 
-if(isset($_COOKIE['email']) && isset($_COOKIE['password'])){
-	$email=$_COOKIE['email'];
-  $password=$_COOKIE['password'];
- $user=$conn->query("SELECT * FROM `users` WHERE `mail` = '".$email."' AND `password` = '".$password."' LIMIT 1")->fetch(); 
-if($user[energy] > 200) {
-$conn->query("UPDATE `users` SET `energy` = 200 ");
+function auth()
+{
+    if (empty($_COOKIE["email"])) {
+        header("Location: index.php");
+        exit;
+    }
 }
-  require_once('header_auth.php');
+
+function noauth()
+{
+    if (!empty($_COOKIE["email"])) {
+        header("Location: game.php");
+        exit;
+    }
+}
+
+if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+    $email = $_COOKIE['email'];
+    $password = $_COOKIE['password'];
+    $user = $conn->query("SELECT * FROM `users` WHERE `mail` = '" . $email . "' AND `password` = '" . $password . "' LIMIT 1")->fetch();
+    if ($user[energy] > 200) {
+        $conn->query("UPDATE `users` SET `energy` = 200 ");
+    }
+    require_once('header_auth.php');
 } else {
-require_once('header.php');
+    require_once('header.php');
 }
 //Инфа о складе 
 //$store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
+//ИД юзера
+$id_user = $user['id'];
 //Админ/Модер проверка
-function moder_auth(array $user) {
-    if($user['priv'] < 1) {
-	header("Location: /"); exit;
-    }
-}
-function admin_auth(array $user) {
-    if($user['priv'] < 2) {
-	header("Location: /"); exit;
-    }
-}
-function su_auth(array $user) {
-    if($user['priv'] < 3) {
-	header("Location: /"); exit;
+function moder_auth(array $user)
+{
+    if ($user['priv'] < 1) {
+        header("Location: /");
+        exit;
     }
 }
 
-function _string($string) {     
-    return (String)$string;   
+function admin_auth(array $user)
+{
+    if ($user['priv'] < 2) {
+        header("Location: /");
+        exit;
+    }
 }
-function _num($i) {   
+
+function su_auth(array $user)
+{
+    if ($user['priv'] < 3) {
+        header("Location: /");
+        exit;
+    }
+}
+
+function _string($string)
+{
+    return (String)$string;
+}
+
+function _num($i)
+{
     return (int)$i;
 }
+
 //Денежные функции
 /*function payment_g(array $user, $gold) {
     if($gold > $user['gold']){ 
@@ -68,18 +91,48 @@ function _num($i) {
     $query->execute();
 */
 //Проверка бана
-function banned(array $user) {
+function banned(array $user)
+{
     $time = date('Y-m-d H:i:s.u');
     if ($user['ban_date'] > $time) {
-        header("Location: /errors/ban.php"); 
-	exit;
+        header("Location: /errors/ban.php");
+        exit;
     }
 }
-function banned_chat(array $user) {
+
+function banned_chat(array $user)
+{
     $time = date('Y-m-d H:i:s.u');
     if ($user['ban_chat_date'] > $time) {
-        header("Location: /errors/ban_chat.php"); 
-	exit;
+        header("Location: /errors/ban_chat.php");
+        exit;
     }
 }
+
+//Складовые функции
+function store_add_metal($id_user, $res){
+    global $conn;
+    $store_id = $conn->query("SELECT * FROM store WHERE id = $id_user")->fetch();
+    if ($res < 0)
+        die('Данные меньше нуля<br><a href="javascript:history.back()" title="Вернуться на предыдущую страницу" >Назад</a><br>');
+
+    $query = $conn->prepare("UPDATE `store` SET `metal` = `metal` + :res  WHERE `id` = :user");
+    $query->bindValue(":res", $res);
+    $query->bindValue(":user", $id_user);
+    $query->execute();
+}
+
+function store_del_metal($id_user, $res)
+{
+	 global $conn;
+    $store_id = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "");
+    if ($res > $store_id['metal']) {
+        die('Данные больше остатка на складе<br><a href="javascript:history.back()" title="Вернуться на предыдущую страницу" >Назад</a><br>');
+    }
+    $query = $conn->prepare('UPDATE `store` SET `metal` = `metal` - :res  WHERE `id` = :user');
+    $query->bindValue(":res", $res);
+    $query->bindValue(":id", $user['id']);
+    $query->execute();
+}
+
 ?>
