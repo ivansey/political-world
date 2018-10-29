@@ -54,7 +54,7 @@ if($work == 0) {
 
 $factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `id_user` = '" . $user['id'] . "'")->fetch()['COUNT(*)'];
 $factory_sql2 = $conn->query("SELECT * FROM `factory` WHERE `id_user` = '" . $user['id'] . "'")->fetch();
-if($factory_sql == 1) {
+if($factory_sql > 0) {
 	echo '<iframe src="factory_viever.php" wight=300 height=400></iframe><br>';
 }
 echo '<a href="../game.php">На главную</a>';

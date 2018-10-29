@@ -54,8 +54,6 @@ if(isset($_POST['edit'])) {
 				<br>
 			Выгрузка ресурсов<br>
 				<input type="submit" name="del_mater" value="Выгрузить"><br>
-			Вывод денег<br>
-				<input type="submit" name="del_money" value="Вывести"><br>
 				<br>
 				<input type="submit" name="del" value="Закрыть"><br>
 		</form>
@@ -140,19 +138,6 @@ if(isset($_POST['del_mater'])) {
 			echo 'Перезагрузка через секунду';
 			die('<meta http-equiv="Refresh" content="1" />');
 		}
-}
-if(isset($_POST['del_money'])) {
-		$query = $conn->prepare('UPDATE `users` SET `money` = `money` + :money WHERE `id` = :id');
-		$query->bindValue(":money", $factory['money']);
-		$query->bindValue(":id", $user['id']);
-		$query->execute();
-		$query = $conn->prepare('UPDATE `factory` SET `money` = `money` - :money WHERE `id` = :id');
-		$query->bindValue(":money", $factory['money']);
-		$query->bindValue(":id", $factory['id']);
-		$query->execute();
-		echo 'Счёт выведен<br>';
-		echo 'Перезагрузка через секунду';
-		echo '<meta http-equiv="Refresh" content="1" />';
-}
+	}
 echo '<a href="factory_viever.php">Назад</a>';
 ?>

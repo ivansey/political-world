@@ -27,6 +27,9 @@ if(isset($_POST['create'])) {
 		}elseif($_POST['res'] > 100 && $_POST['res'] < 0) {
 			echo 'Процент выдаваемых ресурсов либо больше ста, либо меньше нуля';
 		}else{
+			$query = $conn->prepare('UPDATE `users` SET `money` = `money` - 50000000 WHERE `id` = :id');
+			$query->bindValue(":id", $user['id']);
+			$query->execute();
 			$query = $conn->prepare('INSERT `factory` SET `name` = :name, `type` = :type, `salary` = :salary, `res` = :res, `money` = 10000000, `id_user` = :id_user');
 			$query->bindValue(":name", $_POST['name']);
 			$query->bindValue(":type", $_POST['type']);
