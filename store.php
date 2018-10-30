@@ -4,6 +4,7 @@ auth();
 banned($user);
 $id_user = $user['id'];
 $sql = $conn->query("SELECT COUNT(*) FROM store WHERE id = '" . $id_user . "'")->fetch()['COUNT(*)'];
+
 //Проверка наличия склада и создание оного
 if($sql == 0) {
     echo '
@@ -23,8 +24,13 @@ if($sql == 0) {
     //Вывод ресурсов
     $resourse = $conn->query("SELECT * FROM store WHERE id = '" . $id_user . "'")->fetch();
     echo '
-	Металл: ' . $resourse['metal'] . ' <br>' . '
+	Железо: ' . $resourse['metal'] . ' <br>' . '
+	Железная руда: ' . $resourse['metal_ore'] . ' <br>' . '
+	Олово: ' . $resourse['tin'] . ' <br>' . '
+	Оловяная руда: ' . $resourse['tin_ore'] . ' <br>' . '
+	Сталь: ' . $resourse['steel'] . ' <br>' . '
 	Нефть: ' . $resourse['oil'] . ' <br>' . '
+	Топливо: ' . $resourse['fuel'] . ' <br>' . '
 	Еда: ' . $resourse['food'] . ' <br>' . '
 	<a href="../game.php">В главное меню</a>';
 }

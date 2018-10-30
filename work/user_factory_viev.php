@@ -29,7 +29,8 @@ if($factory_sql == 0) {
     echo $user['name'];
     echo '<br>';
     echo 'Остаток денежных средств: ' . $factory['money'] . '<br>';
-    echo 'Материалов на складе: ' . $factory['store'] . '<br>';
+    echo 'Готовых материалов на складе: ' . $factory['store'] . '<br>';
+    echo 'Сырья на складе: ' . $factory['ore'] . '<br>';
 	echo '
 	<form action="" method="post"><br>
 		<input type="submit" name="edit" value="Редактировать">
@@ -54,6 +55,10 @@ if(isset($_POST['edit'])) {
 				<br>
 			Выгрузка ресурсов<br>
 				<input type="submit" name="del_mater" value="Выгрузить"><br>
+			Начислить денег на счёт фабрики<br>
+				<input type="text" name="ore"><br>
+				<input type="submit" name="add_ore" value="Начислить"><br>
+				<br>
 			Вывод денег<br>
 				<input type="submit" name="del_money" value="Вывести"><br>
 				<br>
