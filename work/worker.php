@@ -26,14 +26,14 @@ if($work == 0) {
 	if($work == "metal_ore" && $work == "tin_ore" && $work == "oil" && $work == "food") {
 		$conn->query("UPDATE `factory` SET `store` = `store` + '" . $material_fab . "', `money` = `money` - `salary` WHERE `id` = '" . $user['work'] . "'");
 	}
-	if($work == "metal" && $work == "tin" && $work = "steel") {
+	if($work == "metal" && $work == "tin" && $work = "steel" && $work = "fuel") {
 		if($ore > $factory['ore']) {
 			die('Фабрика не сможет начать работу<br><a href="../game.php">В главное меню</a>');
 		}
 		$query = $conn->prepare('UPDATE `factory` SET `ore` = `ore` - :ore, `store` = `store` + :material, `money` = `money` - `salary` WHERE `id` = :user');
 		$query->bindValue(":ore", $material_ore['value']);
-		$query->bindValue(":material", $material_ore['value']);
-		$query->bindValue(":ore", $material_ore['value']);
+		$query->bindValue(":material", $material['value']);
+		$query->bindValue(":user", $user['work']);
 		$query->execute();
 	}
 	$conn->query("UPDATE `store` SET `" . $factory['type'] . "` = `" . $factory['type'] . "` + '" . $mater . "' WHERE `id` = '" . $user['id'] . "'");
