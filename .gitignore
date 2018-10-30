@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 /system/db_connect.php
+=======
+/system/db_config.php
+>>>>>>> origin/master
