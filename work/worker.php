@@ -31,8 +31,8 @@ if($work == 0) {
 			die('Фабрика не сможет начать работу<br><a href="../game.php">В главное меню</a>');
 		}
 		$query = $conn->prepare('UPDATE `factory` SET `ore` = `ore` - :ore, `store` = `store` + :material, `money` = `money` - `salary` WHERE `id` = :user');
-		$query->bindValue(":ore", $material_ore['value']);
-		$query->bindValue(":material", $material['value']);
+		$query->bindValue(":ore", $ore);
+		$query->bindValue(":material", $material_fab);
 		$query->bindValue(":user", $user['work']);
 		$query->execute();
 	}
