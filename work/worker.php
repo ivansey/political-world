@@ -24,7 +24,6 @@ if ($work == 0) {
     $material_fab = $material['value'] - $mater;
     $ore = $material_ore['value'];
     $ore2 = $material_ore2['value'];
-    echo $ore;
     $conn->query("UPDATE `users` SET `exp` = `exp` + '" . $exp['value'] . "', `money` = `money` + '" . $factory['salary'] . "',`energy` = `energy`-10 WHERE `id` = '" . $user['id'] . "'");
     if (($type == "metal_ore") OR ($type == "tin_ore") OR ($type == "oil") OR ($type == "food")) {
         $conn->query("UPDATE `factory` SET `store` = `store` + '" . $material_fab . "', `money` = `money` - `salary` WHERE `id` = '" . $user['work'] . "'");

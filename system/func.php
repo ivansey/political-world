@@ -10,7 +10,11 @@ function text($m)
 
 function name($userr)
 {
-    $ur = "$userr[tag]$userr[name]";
+    if ($userr['tag'] == "") {
+        $ur = $userr[name];
+    }else{
+        $ur = "[" . $userr[tag] . "] " .  $userr[name] . " ";
+    }
     return $ur;
 }
 
@@ -110,7 +114,8 @@ function banned_chat(array $user)
 }
 
 //Складовые функции
-function store_add_metal($id_user, $res){
+function store_add_metal($id_user, $res)
+{
     global $conn;
     $store_id = $conn->query("SELECT * FROM store WHERE id = $id_user")->fetch();
     if ($res < 0)
@@ -124,8 +129,8 @@ function store_add_metal($id_user, $res){
 
 function store_del_metal($id_user, $res)
 {
-	 global $conn;
-    $store_id = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "");
+    global $conn;
+    $store_id = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . " ");
     if ($res > $store_id['metal']) {
         die('Данные больше остатка на складе<br><a href="javascript:history.back()" title="Вернуться на предыдущую страницу" >Назад</a><br>');
     }
