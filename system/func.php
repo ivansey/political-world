@@ -39,7 +39,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
     $password = $_COOKIE['password'];
     $user = $conn->query("SELECT * FROM `users` WHERE `mail` = '" . $email . "' AND `password` = '" . $password . "' LIMIT 1")->fetch();
     if ($user[energy] > 200) {
-        $conn->query("UPDATE `users` SET `energy` = 200 ");
+        $conn->query("UPDATE `users` SET `energy` = 200 WHERE `id` = " . $user['id'] . " ");
     }
     require_once('header_auth.php');
 } else {

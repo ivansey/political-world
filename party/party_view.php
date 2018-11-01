@@ -34,6 +34,7 @@ if ($leader[id] == $user[id]) {
                 Передать управление партией<br>
                 <input type="text" name="id_user"><br>
                 <input type="submit" name="edit_id_user" value="Передать"><br>
+                <input type="submit" name="delete" value="Распустить партию"><br>
             </form>
         ';
     }
@@ -70,6 +71,15 @@ if (isset($_POST['edit_id_user'])) {
     echo 'Власть передана';
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
+}
+if (isset($_POST['delete'])) {
+    $query = $conn->prepare('UPDATE `users` SET `party` = 0, `tag` = "" WHERE `party` = :id');
+    $query->bindValue(":id", $id);
+    $query->execute();
+    $query = $conn->prepare('DELETE FROM `party` WHERE `party` = :id');
+    $query->bindValue(":id", $id);
+    $query->execute();
+    echo 'Партия распущена <a href="../game.php">На главную</a>';
 }
 echo '<a href="../game.php">На главную</a>';
 ?>
