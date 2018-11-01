@@ -1,8 +1,8 @@
-﻿<?php
+<?php
 include('system/func.php');
 auth();
 banned($user);
-
+// Last change 16:29 1 noyabrya by coding maestro
 $type = _string(_num($_GET['type']));
 
 if(!isset($type) or $type > 2) {
@@ -17,10 +17,18 @@ $conn->query("UPDATE `users` SET `api_token` = '" . $token . "' WHERE `id` = '" 
 
 switch($type) {
 case 0:
-echo '<a href="?type=1">Токен</a></br><a href="profile_viev.php">Назад в профиль</a>';
+echo '<a href="?type=1">Токен</a></br><a href=?type=2>Дизайн</a><br><a href="profile_viev.php">Назад в профиль</a>';
 break;
 case 1:
 echo 'Ваш токен: '.$user[api_token].'</br><a href="settings.php">Назад</a>';
+break;
+case 2:
+echo 'Выбрать стиль:<br><form method="post" action="change_style.php"><select name="taskOption">';
+$styles = $conn->query("SELECT * FROM `styles`");
+while($style=$styles->fetch()){
+echo "<option value=$style[id]>$style[name]</option>";
+}
+echo '</select><input type="submit" value="Изменить"/> </form>';
 break;
 }
 
