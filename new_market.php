@@ -16,8 +16,8 @@ echo '
 		</form>
 		<iframe scr="store.php" wight=300 height=200></iframe><br></div>
 ';
-if($_POST['type'] == 'metal') {
-	$type = $store['metal'];
+//if($_POST['type'] == 'metal') {
+	$type = $store[$_POST['type']];
 	if(isset($_POST['add'])) {
 		if($_POST['res'] > $type) {
 			die('<div class="block">Недостаточно ресурсов</div><br><div class="a"><a href="market.php">На главную</a></div>');
@@ -26,7 +26,7 @@ if($_POST['type'] == 'metal') {
 	$conn->query("INSERT INTO `market` SET `id_user` = " . $user['id'] . ", `type` = '" . $_POST['type'] . "', `res` = " . $_POST['res'] . ", `price` = " . $_POST['price'] . " ");
 	echo 'Предложение отправлено';
 }
-}
+//}
 echo '<div class="a"><a href="market.php">Назад</a><br></div>';
 echo '<div class="a"><a href="game.php">На главную</a></div>';
 ?>
