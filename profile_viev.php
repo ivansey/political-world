@@ -18,7 +18,7 @@ $money = $anek['money'];
 $gold = $anek['gold'];
 $about = $anek['about'];
 $id_user = $anek['id'];
-
+echo '<div class="block">';
 if ($name == '') {
     echo 'Данный игрок не существует';
 } else {
@@ -30,15 +30,16 @@ if ($name == '') {
         }
         echo '' . $money . ' RUB<br>' . $gold . ' G';
 	echo '<br>Дата регистрации:  '. $user["date_reg"]; 
-        echo '</br><a href=profile_edit.php>Редактировать данные</a><br><a href="settings.php">Настройки</a><br>';
+        echo '</br></div><div class="a"><a href=profile_edit.php>Редактировать данные</a></div><br><div class="a"> <a href="settings.php">Настройки</a><br></div>';
     } else {
         echo 'Имя: '.$anek[tag].'' . $name . ' - '.$anek[lvl].' lvl('.$anek[exp].'/'.$anek[nexp].')</br>';
         if ($about == '') {
         } else {
             echo 'О себе: ' . $about . '</br> ';
         }
+        echo '</div>';
     }
 
 }
 ?>
-<a href=game.php>Главная</a>
+<div class="a"> <a href=game.php>Главная</a></div>

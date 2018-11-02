@@ -18,14 +18,14 @@ while ($i < $sql) {
     $echo = $conn->query("SELECT * FROM `users` WHERE `party` = '" . $id . "' LIMIT " . $i . "," . $i2 . " ")->fetch();
     if ($leader == 1) {
         $msg = name($echo);
-        $kick = ' <a href=kick.php?id=' . $echo['id'] . '>Кикнуть</a><br>';
-        echo $msg . $kick;
-    }else{
+        $kick = ' <div class="a"> <a href=kick.php?id=' . $echo['id'] . '>Кикнуть</a></div><br>';
+        echo '<div class="block">' . $msg . $kick . '</div>';
+    } else {
         $msg = name($echo) . "<br>";
-        echo $msg;
+        echo '<div class="block">' . $msg . '</div>';
     }
     $i++;
     $i2++;
 }
-echo '<a href=party_view.php?id=' . $id . '>Назад</a>';
+echo '<div class="a"><a href=party_view.php?id=' . $id . '>Назад</a></div>';
 ?>

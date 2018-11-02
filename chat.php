@@ -4,10 +4,11 @@ auth();
 banned($user);
 banned_chat($user);
 ?>
+<div class="block">
 <iframe name="chat" id="chat" height="500" width="500" src="chat_engine.php#down"></iframe><br>
 <form action="" method="post" target="">
     <input type="text" name="message" size="50"><br>
-    <input type="submit" name="send_message" valve="Отправить">
+    <div class="a"> <input type="submit" name="send_message" valve="Отправить"></div></div>
     <?php
     $name = name($user);
     $message = $_POST['message'];
@@ -23,10 +24,10 @@ banned_chat($user);
     }
 ?>
 </form>
-<a href=game.php>На главную</a>
+<div class="a"><a href=game.php>На главную</a></div>
 <?php
 //Проверка уровня админа и вывод кнопок
 if($user['priv'] >= 1) {
-    echo("<br><a href=/admin/chat.php>Управление чатом</a>");
+    echo("<div class='a'><a href=/admin/chat.php>Управление чатом</a></div>");
 }
 ?>

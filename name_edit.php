@@ -7,11 +7,11 @@ $name = $_POST['name'];
 $name = htmlentities($name);
 $gold = 50;
 if (empty($name)) {
-    die("Не введено имя <br> <a href=profile_edit.php>Вернуться</a>");
+    die("<div class='block'>Не введено имя</div><div class='a'><a href=profile_edit.php>Вернуться</a></div>");
 } else {
     $val = $conn->query("SELECT COUNT(*) FROM `users` WHERE `name` = '" . $name . "'")->fetch()['COUNT(*)'];
     if ($val > 0) {
-        die("Введённое имя занято <br> <a href=profile_edit.php>Вернуться</a>");
+        die("<div class='block'>Введённое имя занято</div><div class='a'> <a href=profile_edit.php>Вернуться</a></div>");
     } else {
         if ($user['gold'] >= 50) {
 	    //Защищённый запрос
@@ -23,9 +23,9 @@ if (empty($name)) {
 	    $query->bindValue(":name", $name);
 	    $query->bindValue(":id", $id);
 	    $query->execute();
-            echo("Имя сменено на '$name'. <br> <a href=profile_edit.php>Вернуться</a>");
+            echo("<div class='block'>Имя сменено на '$name' </div><div class='a'> <a href=profile_edit.php>Вернуться</a></div>");
         } else {
-            echo 'Не хватет золота(требуется 50) <br> <a href=profile_edit.php>Вернуться</a>';
+            echo '<div class="block">Не хватет золота(требуется 50) </div><div class="a"> <a href=profile_edit.php>Вернуться</a></div>';
         }
     }
 }

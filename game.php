@@ -11,22 +11,23 @@ banned($user);
     <title>Главная</title>
 </head>
 <body>
-<a href=profile_viev.php>О персонаже</a></br>
-<a href=party>Список партий</a></br>
+
+<div class="a"><a href=profile_viev.php>О персонаже</a></br></div>
+<div class="a"><a href=party>Список партий</a></br></div>
 <?php
 if ($user['party'] != 0) {
-    echo '<a href=party/party_view.php?id=' . $user['party'] . '>Моя партия</a></br>';
+    echo '<div class="a"><a href=party/party_view.php?id=' . $user['party'] . '>Моя партия</a></br></div>';
 }
 ?>
-<a href=chat.php>Чат</a></br>
-<a href=work>Работа</a></br>
-<a href=store.php>Склад</a><br>
-<a href=market.php>Торговля</a><br>
-<a href=logout.php>Выход</a><br>
+<div class="a"><a href=chat.php>Чат</a></br></div>
+<div class="a"><a href=work>Работа</a></br></div>
+<div class="a"><a href=store.php>Склад</a><br></div>
+<div class="a"><a href=market.php>Торговля</a><br></div>
+<div class="a"><a href=logout.php>Выход</a><br></div>
 <?php
 if ($user['priv'] >= 1) {
     ?>
-    <a href=admin/>Админ-панель</a></br>
+    <div class="a"><a href=admin/>Админ-панель</a></br></div>
     <?php
 }
 ?>

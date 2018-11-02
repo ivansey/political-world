@@ -13,8 +13,9 @@ $query = $conn->prepare('UPDATE `users` SET `party` = NULL, `tag` = :tag WHERE `
 $query->bindValue(":tag", '');
 $query->bindValue(":user", $id);
 $query->execute();
-die('Игрок успешно кикнут');
+die('<div class="block">Игрок успешно кикнут');
 } else {
-echo 'Недостаточно прав<br>';
+echo '<div class="block">Недостаточно прав';
 }
+echo '<div class="a"> <a href="../game.php">На главную</a></div></div>';
 ?>

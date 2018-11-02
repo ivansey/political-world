@@ -19,5 +19,5 @@ $query->bindValue(":id", $id);
 $query->bindValue(":tag", $tag);
 $query->bindValue(":user", $user['id']);
 $query->execute();
-echo 'Вы вступили';
-echo '<a href="../game.php">На главную</a>';
+echo '<div class="block">Вы вступили';
+echo '<div class="a"> <a href="../game.php">На главную</a></div></div>';

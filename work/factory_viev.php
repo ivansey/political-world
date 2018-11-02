@@ -6,6 +6,7 @@ $id = $_GET['factory_id'];
 $factory = $conn->query("SELECT * FROM `factory` WHERE `id` = '" . $id . "'")->fetch();
 $id_user = $conn->query("SELECT * FROM `users` WHERE `id` = '" . $factory['id_user'] . "'")->fetch();
 if(isset($_GET['factory_id'])) {
+    echo '<div class="block">';
     echo 'Имя ';
     echo $factory['name'];
     echo '<br>';
@@ -23,7 +24,7 @@ if(isset($_GET['factory_id'])) {
     echo '<br>';
     echo '
 	<form action="" method="post"><br>
-	<input type="submit" name="work" value="Работать">
+	<div class="a"><input type="submit" name="work" value="Устроиться на работу"></div> 
 	</form>
     ';
     if(isset($_POST['work'])) {
@@ -33,6 +34,7 @@ if(isset($_GET['factory_id'])) {
 }else{
     echo 'Такой фабрики нет';
 }
-echo '<a href="index.php">Назад</a><br>';
-echo '<a href="../game.php">На главную</a>';
+echo '</div>';
+echo '<div class="a"><a href="index.php">Назад</a></div>';
+echo '<div class="a"><a href="../game.php">На главную</a></div>';
 ?>

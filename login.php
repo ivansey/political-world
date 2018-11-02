@@ -7,7 +7,7 @@ noauth();
     <title>Вход</title>
 </head>
 <body>
-<form action="login_user.php" method="post">
+<form action="login_user.php" method="post"> <div class="block">
     <p>
         <label>Ваш email:<br></label>
         <input name="mail" type="text" size="15">
@@ -17,9 +17,9 @@ noauth();
         <input name="password" type="password" size="15">
     </p>
     <p>
-        <input type="submit" name="submit" value="Войти">
-    </p></form>
-</div>
+        <div class="block"><input type="submit" name="submit" value="Войти"></div>
+    </p>
+</div></form>
 </body>
 </html>
 

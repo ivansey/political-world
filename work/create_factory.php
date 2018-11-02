@@ -6,6 +6,7 @@ banned($user);
 $work = $user['work'];
 //Формы
 echo '
+    <div class="block">
 	Создание фабрики<br>
 	<form action="" method="post">
 		Имя:<br>
@@ -16,7 +17,8 @@ echo '
 		<input type="text" name="salary"><br>
 		Выдаваемый процент ресурсов<br>
 		<input type="text" name="res"><br>
-		<input type="submit" name="create" value="Создать"><br>
+		<div class="a"><input type="submit" name="create" value="Создать"></div><br>
+		<div class="block">
 		Доступны типы<br>
 		metal 50kk RUB<br>
 		metal_ore 30kk RUB<br>
@@ -26,6 +28,7 @@ echo '
 		oil 100kk RUB<br>
 		fuel 350kk RUB<br>
 		food 15kk RUB<br>	
+		</div>
 	</form>
 ';
 //Код создания фабрики
@@ -192,6 +195,7 @@ if (isset($_POST['create'])) {
         }
     }
 }
-echo '<br><a href="index.php">На работу</a>';
-echo '<a href="../game.php">На главную</a><br>';
+echo '</div>';
+echo '<div class="a"><br><a href="index.php">На работу</a></div>';
+echo '<div class="a"><a href="../game.php">На главную</a></div>';
 ?>

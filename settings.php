@@ -17,18 +17,18 @@ $conn->query("UPDATE `users` SET `api_token` = '" . $token . "' WHERE `id` = '" 
 
 switch($type) {
 case 0:
-echo '<a href="?type=1">Токен</a></br><a href=?type=2>Дизайн</a><br><a href="profile_viev.php">Назад в профиль</a>';
+echo '<div class="a"><a href="?type=1">Токен</a></br></div><div class="a"><a href=?type=2>Дизайн</a></div><br><div class="a"><a href="profile_viev.php">Назад в профиль</a></div>';
 break;
 case 1:
-echo 'Ваш токен: '.$user[api_token].'</br><a href="settings.php">Назад</a>';
+echo '<div class="block">Ваш токен: '.$user[api_token].'</br><div class="a"><a href="settings.php">Назад</a></div></div>';
 break;
 case 2:
 echo 'Выбрать стиль:<br><form method="post" action="change_style.php"><select name="taskOption">';
 $styles = $conn->query("SELECT * FROM `styles`");
 while($style=$styles->fetch()){
-echo "<option value=$style[id]>$style[name]</option>";
+echo "<div class='block'> <option value=$style[id]>$style[name]</option>";
 }
-echo '</select><input type="submit" value="Изменить"/> </form>';
+echo '</select><div class="a"><input type="submit" value="Изменить"/></div></div> </form>';
 break;
 }
 

@@ -2,6 +2,7 @@
 include('../system/func.php');
 auth();
 banned($user);
+echo '<div class="block">';
 $work = $user['work'];
 $factory = $conn->query("SELECT * FROM `factory` WHERE `id` = '" . $work . "'")->fetch();
 $exp = $conn->query("SELECT * FROM `parametr` WHERE `name` = 'exp_work'")->fetch();
@@ -30,7 +31,7 @@ if ($work == 0) {
     }
     if (($type == "tin") OR ($type == "metal") OR ($type == "fuel")) {
         if ($ore > $factory['ore']) {
-            die('Фабрика не сможет начать работу<br><a href="../game.php">В главное меню</a>');
+            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
         }
         $query = $conn->prepare('UPDATE factory SET ore = ore - :ore, store = store + :material, money = money - salary WHERE id = :user');
         $query->bindValue(":material", $material_fab);
@@ -40,10 +41,10 @@ if ($work == 0) {
     }
     if ($type == "steel") {
         if ($ore > $factory['ore']) {
-            die('Фабрика не сможет начать работу<br><a href="../game.php">В главное меню</a>');
+            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
         }
         if ($ore2 > $factory['ore2']) {
-            die('Фабрика не сможет начать работу<br><a href="../game.php">В главное меню</a>');
+            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
         }
         $query = $conn->prepare('UPDATE factory SET ore = ore - :ore, ore2 = ore2 - :ore2, store = store + :material, money = money - salary WHERE id = :user');
         $query->bindValue(":material", $material_fab);
@@ -55,7 +56,8 @@ if ($work == 0) {
     $conn->query("UPDATE `store` SET `" . $factory['type'] . "` = `" . $factory['type'] . "` + '" . $mater . "' WHERE `id` = '" . $user['id'] . "'");
     //$conn->query("UPDATE `factory` SET `store` = `store` + '" . $material_fab . "', `money` = `money` - `salary` WHERE `id` = '" . $user['work'] . "'");
     echo 'Получено денег: ' . $factory['salary'] . ', опыта: ' . $exp['value'] . ', материалов: ' . $mater;
-    echo '<br><a href="worker.php">Повторно</a>';
+    echo '<br><div class="a"><a href="worker.php">Повторно</a></div>';
 }
-echo '<br><a href="index.php">Назад</a>';
-echo '<br><a href="../game.php">В главное меню</a>';
+echo '</div>';
+echo '<br><div class="a"><a href="index.php">Назад</a></div>';
+echo '<br><div class="a"><a href="../game.php">В главное меню</a></div>';

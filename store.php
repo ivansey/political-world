@@ -9,21 +9,22 @@ $sql = $conn->query("SELECT COUNT(*) FROM store WHERE id = '" . $id_user . "'")-
 if($sql == 0) {
     echo '
 	<form action="" method="post">
-	    <input type="submit" name="create" value="Создать склад">
+	    <div class="a"><input type="submit" name="create" value="Создать склад"></div>
 	</form>
     ';
     if(isset($_POST['create'])) {
 	$conn->query("INSERT INTO store SET id = '" . $id_user . "'");
 	echo '
 	    Склад создан
-	    <a href="store.php">Открыть склад</a>
-	    <a href="../game.php">В главное меню</a>
+	    <div class="a"><a href="store.php">Открыть склад</a></div>
+	    <div class="a"><a href="../game.php">В главное меню</a></div>
 	';
     }
 }else{
     //Вывод ресурсов
     $resourse = $conn->query("SELECT * FROM store WHERE id = '" . $id_user . "'")->fetch();
     echo '
+    <div class="block">
 	Железо: ' . $resourse['metal'] . ' <br>' . '
 	Железная руда: ' . $resourse['metal_ore'] . ' <br>' . '
 	Олово: ' . $resourse['tin'] . ' <br>' . '
@@ -32,6 +33,7 @@ if($sql == 0) {
 	Нефть: ' . $resourse['oil'] . ' <br>' . '
 	Топливо: ' . $resourse['fuel'] . ' <br>' . '
 	Еда: ' . $resourse['food'] . ' <br>' . '
-	<a href="../game.php">В главное меню</a>';
+	</div>
+	<div class="a"><a href="../game.php">В главное меню</a></div>';
 }
 ?>

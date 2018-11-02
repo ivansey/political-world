@@ -15,9 +15,9 @@ try {
         $query->execute();
         $party = $conn->query("SELECT * FROM `party` WHERE `leader` = " . $user['id'] . " ")->fetch();
         $conn->query("UPDATE `users` SET `party` = " . $party['id'] . ", `gold` = `gold` - 100, `tag` = '" . $tag . "' WHERE `id` = " . $user['id'] . " ");
-        die("Партия успешно создана<br><a href=/>На главную</a>");
+        die("<div class='block'>Партия успешно создана<div class='a'> <a href=/>На главную</a></div></div>");
     } else {
-        die('Не хватает золота для создания партии<br><a href=create_party.php>Назад</a>');
+        die('<div class="block">Не хватает золота для создания партии<div class="a"> <a href=create_party.php>Назад</a></div></div>');
     }
 } catch (Exception $exception) {/* All exceptions handling */
 }

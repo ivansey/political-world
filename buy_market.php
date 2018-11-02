@@ -9,10 +9,10 @@ if(isset($_POST['buy'])) {
 		$type = $factory['type'];
 		$res = $_POST['res'];
 		if($money > $user['money']) {
-			die('Нехватает денег<br><a href="game.php">На главную</a>');
+			die('<div class="block">Нехватает денег<div class="block"><a href="game.php">На главную</a></div></div>');
 		}
 		if($res > $market['res']) {
-			die('У продавца столько товара нет<br><a href="game.php">На главную</a>');
+			die('<div class="block">У продавца столько товара нет<div class="a"><a href="game.php">На главную</a></div></div>');
 		}
 		$conn->query("UPDATE `users` SET `money` = `money` - '" . $money . "' WHERE `id` = '" . $user['id'] . "'");
 		$conn->query("UPDATE `users` SET `money` = `money` + '" . $money . "' WHERE `id` = '" . $market['id_user'] . "'");
@@ -27,6 +27,6 @@ if(isset($_POST['buy'])) {
 		}
 		echo 'Транзакция завершена<br>';
 	}		
-echo '<a href="market.php">Назад</a>';
-echo '<a href="game.php">На главную</a>';
+echo '<div class="a"><a href="market.php">Назад</a></div>';
+echo '<div class="a"><a href="game.php">На главную</a></div>';
 ?>

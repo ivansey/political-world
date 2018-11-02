@@ -2,6 +2,7 @@
 include('../system/func.php');
 auth();
 banned($user);
+echo '<div class="block">';
 //Переменные и вывод ошибок
 $id_factory = $_GET['id_factory'];
 $factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `id_user` = " . $user['id'] . "")->fetch()['COUNT(*)'];
@@ -11,7 +12,7 @@ if ($factory_sql == 0) {
 $factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `id` = " . $id_factory . "")->fetch()['COUNT(*)'];
 if ($factory_sql == 0) {
     echo 'У вас нет фабрики';
-    die('<a href="../game.php">На главную</a>');
+    die('<div class="a"><a href="../game.php">На главную</a></div> ');
 }
 $factory = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory . "")->fetch();
 $user_store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
@@ -67,48 +68,65 @@ if ($type_num == 2) {
 //Кнопка появления форм редактирования
 echo '
 	<form action="" method="post"><br>
-		<input type="submit" name="edit" value="Редактировать">
+		<div class="a"><input type="submit" name="edit" value="Редактировать"></div>
 	</form>
     ';
 //Формы редактирования
 if (isset($_POST['edit'])) {
     echo '
 		<form action="" method="post"><br>
+		    <div class="block">
 			Имя фабрики<br>
 				<input type="text" name="name"><br>
-				<input type="submit" name="edit_name" value="Редактировать"><br>
+				<div class="a"><input type="submit" name="edit_name" value="Редактировать"></div><br>
+				</div>
+			<div class="block">
 			Выдаваемая зарплата<br>
 				<input type="text" name="salary"><br>
-				<input type="submit" name="edit_salary" value="Редактировать"><br>
+				<div class="a"><input type="submit" name="edit_salary" value="Редактировать"></div><br>
+				</div>
+			<div class="block">
 			Выдаваемый процент ресурса<br>
 				<input type="text" name="res"><br>
-				<input type="submit" name="edit_res" value="Редактировать"><br>
+				<div class="a"><input type="submit" name="edit_res" value="Редактировать"></div><br>
+				</div>
 				<br>
+			<div class="block">
 			Начислить денег на счёт фабрики<br>
 				<input type="text" name="money"><br>
-				<input type="submit" name="add_money" value="Начислить"><br>
+				<div class="a"><input type="submit" name="add_money" value="Начислить"></div><br>
+				</div>
 				<br>
+			<div class="block">
 			Выгрузка ресурсов<br>
-				<input type="submit" name="del_mater" value="Выгрузить"><br>
+				<div class="a"><input type="submit" name="del_mater" value="Выгрузить"></div><br>
+				</div>
+			<div class="block">
 			Вывод денег<br>
-				<input type="submit" name="del_money" value="Вывести"><br>
+				<div class="a"><input type="submit" name="del_money" value="Вывести"></div><br>
+				</div>
 				<br>
-				<input type="submit" name="del" value="Закрыть"><br>
+				<div class="a"><input type="submit" name="del" value="Закрыть фабрику"></div><br>
 	';
     if ($type_num == 1) {
         echo '
+                
+                <div class="block">
                 Загрузить сырья на склад фабрики<br>
 				<input type="text" name="ore"><br>
-				<input type="submit" name="add_ore" value="Начислить"><br>
+				<div class="a"><input type="submit" name="add_ore" value="Начислить"></div><br>
 				<br>
+				</div>
 		';
     }
     if ($type_num == 2) {
         echo ' 
+                <div class="block">
                 Загрузить второго сырья на склад фабрики<br>
 				<input type="text" name="ore2"><br>
-				<input type="submit" name="add_ore2" value="Начислить"><br>
+				<div class="a"><input type="submit" name="add_ore2" value="Начислить"></div><br>
 				<br>
+				</div>
 		';
     }
     echo '</form>';
@@ -246,5 +264,6 @@ if (isset($_POST['add_ore2'])) {
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
 }
-echo '<a href="factory_viever.php">Назад</a>';
+echo '</div>';
+echo '<div class="a"><a href="factory_viever.php">Назад</a></div>';
 ?>
