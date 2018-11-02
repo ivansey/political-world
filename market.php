@@ -10,13 +10,9 @@ $sum = $conn->query("SELECT COUNT(*) FROM `market` WHERE `type` = '" . $type . "
 if ($sum == 0) {
     die('<div class="block">Предложений на рынке нет</div>');
     } else {
-    $i = 0;
-    //$i2 = 1;
-    while ($i <= $sum) {
-
-        //$i2++;
-        $market = $conn->query("SELECT * FROM `market` WHERE `type` = '" . $type . "' ORDER BY `price` ASC LIMIT " . $i . ",1 ")->fetch();
-        echo '<div class="block">ID: ' . $market['id_user'] . ', тип: ' . $market['type'] . ', цена:' . $market['price'] . ', кол-во:' . $market['res'];
+  $sqlet = $conn->query("SELECT * FROM `market` WHERE `type` = '" . $type . "' ORDER BY `price` ASC");
+while($market=$sqlet->fetch()){
+echo '<div class="block">ID: ' . $market['id_user'] . ', тип: ' . $market['type'] . ', цена:' . $market['price'] . ', кол-во:' . $market['res'];
         echo '
 		<form action="buy_market.php?id=' . $market['id'] . '" method="post">
 			<div class="a"> <input type="text" name="res"> 
@@ -24,8 +20,7 @@ if ($sum == 0) {
 		</form>
 		</div>
 	';
-        $i++;
-    }
+}
 }
 /*if (isset($_POST['sort_type'])) {
     $store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . " ")->fetch();
