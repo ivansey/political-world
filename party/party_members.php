@@ -3,6 +3,7 @@ include('../system/func.php');
 auth();
 banned($user);
 $leader = $conn->query("SELECT COUNT(*) FROM `party` WHERE `leader` = " . $user['id'] . " ")->fetch()['COUNT(*)'];
+$party = $conn->query("SELECT * FROM `party` WHERE `id` = " . $user['party'] . " ")->fetch();
 
 $id = _string(_num($_GET['id']));
 
@@ -16,7 +17,7 @@ $i = 0;
 $i2 = 1;
 while ($i < $sql) {
     $echo = $conn->query("SELECT * FROM `users` WHERE `party` = '" . $id . "' LIMIT " . $i . "," . $i2 . " ")->fetch();
-    if ($leader == 1) {
+    if ($party['leader'] == $user['id']) {
         $msg = name($echo);
         $kick = ' <div class="a"> <a href=kick.php?id=' . $echo['id'] . '>Кикнуть</a></div><br>';
         echo '<div class="block">' . $msg . $kick . '</div>';
