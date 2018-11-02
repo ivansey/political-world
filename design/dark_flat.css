@@ -1,0 +1,25 @@
+body{
+margin: 0 auto;
+text: center;
+max-width: 320px;
+background-color: RGB(128, 128, 128); /* Фоновая картинка */
+ background-size: cover; /* Растягиваем фон */
+font-size: 14px;
+font-family: Arial,sans-serif;
+word-wrap: break-word;
+}
+   .block {
+    background: rgba(0,0,0,0.6); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+   }
+   .a{
+padding: 20px ;
+text-align: center;
+background: #242324;
+border-top: 1px solid #1b1b1e;
+border-bottom: 1px solid #1b1b1e;
+position: relative;
+color: white;
+}
