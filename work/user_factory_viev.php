@@ -198,8 +198,8 @@ if (isset($_POST['del_mater'])) {
     if ($store == 0) {
         die('Склад пуст');
     }
-    if ($type == 'metal') {
-        $conn->query("UPDATE `store` SET `metal` = `metal` + '" . $store . "' WHERE `id` = '" . $user['id'] . "'");
+    //if ($type == 'metal') {
+        $conn->query("UPDATE `store` SET `" . $type . "` = `" . $type . "` + '" . $store . "' WHERE `id` = '" . $user['id'] . "'");
         $query = $conn->prepare('UPDATE `factory` SET `store` = `store` - :store WHERE `id` = :id');
         $query->bindValue(":store", $factory['store']);
         $query->bindValue(":id", $factory['id']);
@@ -207,7 +207,7 @@ if (isset($_POST['del_mater'])) {
         echo 'Счёт изменён<br>';
         echo 'Перезагрузка через секунду';
         die('<meta http-equiv="Refresh" content="1" />');
-    }
+    //}
 }
 if (isset($_POST['del_money'])) {
     $query = $conn->prepare('UPDATE `users` SET `money` = `money` + :money WHERE `id` = :id');
