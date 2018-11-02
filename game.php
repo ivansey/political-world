@@ -22,7 +22,7 @@ if ($user['party'] != 0) {
 <div class="a"><a href=chat.php>Чат</a></br></div>
 <div class="a"><a href=work>Работа</a></br></div>
 <div class="a"><a href=store.php>Склад</a><br></div>
-<div class="a"><a href=market.php>Торговля</a><br></div>
+<div class="a"><a href=select_market.php>Торговля</a><br></div>
 <div class="a"><a href=logout.php>Выход</a><br></div>
 <?php
 if ($user['priv'] >= 1) {
