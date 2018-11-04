@@ -38,6 +38,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
     $email = $_COOKIE['email'];
     $password = $_COOKIE['password'];
     $user = $conn->query("SELECT * FROM `users` WHERE `mail` = '" . $email . "' AND `password` = '" . $password . "' LIMIT 1")->fetch();
+    $region_user = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $user['region'] . " ")->fetch();
     if ($user[energy] > 200) {
         $conn->query("UPDATE `users` SET `energy` = 200 WHERE `id` = " . $user['id'] . " ");
     }
@@ -45,6 +46,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 } else {
     require_once('header.php');
 }
+
 //Инфа о складе 
 //$store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
 //ИД юзера
