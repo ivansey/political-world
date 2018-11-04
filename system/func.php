@@ -11,9 +11,9 @@ function text($m)
 function name($userr)
 {
     if ($userr['tag'] == "") {
-        $ur = "<a href='../profile_viev.php?user_id=" . $userr['id'] . "'>" . $userr['name'] . "</a>";
+        $ur = "<a href='../index.php?user_id=" . $userr['id'] . "'>" . $userr['name'] . "</a>";
     }else{
-        $ur = "<a href='../profile_viev.php?user_id=" . $userr['id'] . "'>" . "[" . $userr['tag'] . "] " .  $userr['name'] . "</a>";
+        $ur = "<a href='../index.php?user_id=" . $userr['id'] . "'>" . "[" . $userr['tag'] . "] " .  $userr['name'] . "</a>";
     }
     return $ur;
 }

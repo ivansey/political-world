@@ -22,5 +22,5 @@ echo '<div class="block">ID: ' . $market['id_user'] . ', тип: ' . $market['ty
 	';
 }
 }
-echo '<div class="a"><a href="select_market.php">На главную</a></div>';
+echo '<div class="a"><a href="index.php">На главную</a></div>';
 ?>
