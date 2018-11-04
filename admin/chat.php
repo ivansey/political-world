@@ -72,7 +72,7 @@ if(isset($_POST['ban'])) {
 }
 //Сам чат
 echo '
-<iframe name="chat" id="chat" height="500" width="500" src="../chat_engine.php#down"></iframe><br>
+<iframe name="chat" id="chat" height="500" width="500" src="../chat/engine.php#down"></iframe><br>
 <form action="" method="post" target="">
     <input type="text" name="message" size="50"><br>
     <input type="submit" name="send_message" valve="Отправить">
@@ -86,7 +86,7 @@ echo '
 	$query->bindValue(":name", $name); 
 	$query->bindValue(":date", $date);
 	$query->execute();
-        header('Location: chat.php'); exit;
+        header('Location: index.php'); exit;
     }
 ?>
 </form>
