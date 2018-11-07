@@ -30,7 +30,7 @@ if ($name == '') {
         }
         echo '' . $money . ' RUB<br>' . $gold . ' G';
 	echo '<br>Дата регистрации:  '. $user["date_reg"]; 
-        echo '</br></div><div class="a"><a href=profile_edit.php>Редактировать данные</a></div><br><div class="a"> <a href="settings.php">Настройки</a><br></div>';
+        echo '</br></div><div class="a"><a href=edit.phpedit.php>Редактировать данные</a></div><br><div class="a"> <a href="../setting/index.php">Настройки</a><br></div>';
     } else {
         echo 'Имя: '.$anek[tag].'' . $name . ' - '.$anek[lvl].' lvl('.$anek[exp].'/'.$anek[nexp].')</br>';
         if ($about == '') {
@@ -42,4 +42,4 @@ if ($name == '') {
 
 }
 ?>
-<div class="a"> <a href=game.php>Главная</a></div>
+<div class="a"> <a href=../game.php>Главная</a></div>

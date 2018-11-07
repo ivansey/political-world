@@ -16,7 +16,7 @@ if($sql == 0) {
 	$conn->query("INSERT INTO store SET id = '" . $id_user . "'");
 	echo '
 	    Склад создан
-	    <div class="a"><a href="store.php">Открыть склад</a></div>
+	    <div class="a"><a href="index.php">Открыть склад</a></div>
 	    <div class="a"><a href="../game.php">В главное меню</a></div>
 	';
     }

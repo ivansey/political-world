@@ -15,4 +15,4 @@ banned($user);
     <textarea name="about" cols="40" rows="5"></textarea>
     <div class="a"> <input name="submit" type="submit" valve="Редактировать"></div><br>
 </form></div>
-<div class="a"> <a href=profile_viev.php>Вернуться</a></div>
+<div class="a"> <a href=index.php>Вернуться</a></div>

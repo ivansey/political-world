@@ -17,4 +17,4 @@ banned($user);
 <div class="a"><a href="market.php?type=oil">Искать Нефть</a></div>
 <div class="a"><a href="market.php?type=fuel">Искать Топливо</a></div>
 <div class="a"><a href="market.php?type=food">Искать Еду</a></div>
-<div class="a"><a href="game.php">На главную</a></div>
+<div class="a"><a href="../game.php">На главную</a></div>
