@@ -14,7 +14,6 @@ if($work == 0) {
 		Найдите работу<br>
 		<form action="find_work.php" method="post">
 		<div class="a"><input type="submit" name="find" value="Поиск работы"></div> 
-		<br>
 		</form>
 	';
 

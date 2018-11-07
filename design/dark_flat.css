@@ -21,5 +21,6 @@ background: #242324;
 border-top: 1px solid #1b1b1e;
 border-bottom: 1px solid #1b1b1e;
 position: relative;
-color: white;
+text-decoration: none;
+color:#ffffff;
 }

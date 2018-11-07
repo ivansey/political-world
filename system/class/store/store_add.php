@@ -8,5 +8,5 @@
 
 class store_add
 {
-
+    public $echo;
 }

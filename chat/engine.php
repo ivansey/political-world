@@ -1,5 +1,5 @@
 <?php
-include('system/func.php');
+include('../system/func.php');
 auth();
 banned($user);
 banned_chat($user);

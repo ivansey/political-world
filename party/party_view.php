@@ -27,7 +27,13 @@ if ($leader[id] == $user[id]) {
     ';
 
 }
+if(isset($_POST['prt'])) {
+echo 'menu';
+}
 echo '<br>';
+ if ($user['priv'] > 1) {
+echo '<div class="a"><a href=/delete/delete_party.php?id='.$id.'>Удалить(адм.)</a></div>';
+}
 ?>
 <div class="a"><a href="index.php">В список партий</a></div>
 <div class="a"><a href="../game.php">На главную</a></div>

@@ -1,5 +1,5 @@
 <?php
-include('system/func.php');
+include('../system/func.php');
 auth();
 banned($user);
 banned_chat($user);
@@ -28,6 +28,6 @@ banned_chat($user);
 <?php
 //Проверка уровня админа и вывод кнопок
 if($user['priv'] >= 1) {
-    echo("<div class='a'><a href=/admin/index.php>Управление чатом</a></div>");
+    echo("<div class='a'><a href=../admin/chat.php>Управление чатом</a></div>");
 }
 ?>

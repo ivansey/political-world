@@ -5,7 +5,7 @@
  * Date: 02.11.18
  * Time: 16:19
  */
-include('system/func.php');
+include('../system/func.php');
 auth();
 banned($user);
 ?>

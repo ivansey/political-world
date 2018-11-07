@@ -1,5 +1,6 @@
 <?php
 require_once('db_connect.php');
+//require_once('class.php');
 //include('economic.php');
 
 function text($m)
@@ -11,9 +12,9 @@ function text($m)
 function name($userr)
 {
     if ($userr['tag'] == "") {
-        $ur = "<a href='../index.php?user_id=" . $userr['id'] . "'>" . $userr['name'] . "</a>";
+        $ur = "<a href='../users/index.php?user_id=" . $userr['id'] . "'>" . $userr['name'] . "</a>";
     }else{
-        $ur = "<a href='../index.php?user_id=" . $userr['id'] . "'>" . "[" . $userr['tag'] . "] " .  $userr['name'] . "</a>";
+        $ur = "<a href='../users/index.php?user_id=" . $userr['id'] . "'>" . "[" . $userr['tag'] . "] " .  $userr['name'] . "</a>";
     }
     return $ur;
 }

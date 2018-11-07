@@ -1,5 +1,5 @@
 <?php
-include('system/func.php');
+include('../system/func.php');
 auth();
 banned($user);
 $store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . " ")->fetch();

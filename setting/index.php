@@ -1,5 +1,5 @@
 <?php
-include('system/func.php');
+include('../system/func.php');
 auth();
 banned($user);
 // Last change 16:29 1 noyabrya by coding maestro
