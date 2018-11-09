@@ -8,6 +8,13 @@
 include("../system/func.php");
 auth();
 banned($user);
+
+if($user[priv] > 2) {
+    echo '<br><div class="a"><a href="add.php">Создать регион</a></div>';
+}
+echo '<div class="a"><a href="../game.php">Главная</a></div>';
+echo '<br>';
+
 /*$i=0;
 $sum = $conn->query("SELECT COUNT(*) FROM `regions`")->fetch()['COUNT(*)'];
 while ($i <= $sum) {
@@ -19,8 +26,5 @@ $regions = $conn->query("SELECT * FROM `regions`");
 while($region=$regions->fetch()){
     echo '<div class="a"><a href="viev.php?id=' . $region['id'] . '">' . $region['name'] . '</a></div>';
 }
-echo '<br>';
-if($user[priv] > 2) {
-echo '<br><div class="a"><a href="add.php">Создать регион</a></div>';
-}
-echo '<div class="a"><a href="../game.php">Главная</a></div>';
+
+

@@ -2,6 +2,12 @@
 include('../system/func.php');
 banned($user);
 auth();
+
+if ($user['party'] == 0) {
+    echo '<div class="a"><a href=create_party.php>Создать партию(100G)</a></div>';
+}
+echo '<div class="a"><a href=../game.php>На главную</a></div>';
+
 echo '
     <div class="block">
         <form action="" method="post">
@@ -21,8 +27,4 @@ while ($party = $partys->fetch()) {
     echo '<div class="a"><a href=party_view.php?id=' . $party['id'] . '>' . $party['name'] . '</a></div><br>';
 }
 echo '</div>';
-if ($user['party'] == 0) {
-    echo '<div class="a"><a href=create_party.php>Создать партию(100G)</a></div>';
-}
-echo '<div class="a"><a href=../game.php>На главную</a></div>';
-?>
+

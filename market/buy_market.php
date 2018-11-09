@@ -16,10 +16,8 @@ if(isset($_POST['buy'])) {
 		}
 		$conn->query("UPDATE `users` SET `money` = `money` - '" . $money . "' WHERE `id` = '" . $user['id'] . "'");
 		$conn->query("UPDATE `users` SET `money` = `money` + '" . $money . "' WHERE `id` = '" . $market['id_user'] . "'");
-		if($type = 'metal') {
-			$conn->query("UPDATE `store` SET `metal` = `metal` + '" . $_POST['res'] . "' WHERE `id` = '" . $user['id'] . "'");
+			$conn->query("UPDATE `store` SET `" . $type . "` = `" . $type . "` + '" . $_POST['res'] . "' WHERE `id` = '" . $user['id'] . "'");
 			$conn->query("UPDATE `market` SET `res` = `res` - '" . $_POST['res'] . "' WHERE `id` = '" . $market['id'] . "'");
-		}
 		//$conn->query("UPDATE `store` SET `" . $type . "` = `" . $type . "` + '" . $_POST['res'] . "' WHERE `id` = '" . $user['id'] . "'");
 		//$conn->query("UPDATE `store` SET `" . $type . "` = `" . $type . "` - '" . $_POST['res'] . "' WHERE `id` = '" . $market['id_user'] . "'");
 		if($market['res'] <= 0) {

@@ -11,10 +11,11 @@ echo '
     <title>Главная</title>
 </head>
 <body>
-<div class="block">Регион<br>
+<div class="block">Регион нахождения<br>
 <div class="a"><a href=regions/viev.php?id=' . $region_user['id'] . '>' . $region_user['name'] . '</a></br></div></div>
 <div class="a"><a href=users/index.php>О персонаже</a></br></div>
 <div class="a"><a href=regions>Регионы</a></br></div>
+<div class="a"><a href=goverment>Государства</a></br></div>
 <div class="a"><a href=party>Список партий</a></br></div>
 ';
 if ($user['party'] != 0) {

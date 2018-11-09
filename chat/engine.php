@@ -11,5 +11,5 @@ $msg = $message['name'] . " [" . $message['time'] . "] " . " : " . $message['tex
     echo($msg);
 }
 ?>
-<meta http-equiv="Refresh" content="2" />
+<meta http-equiv="Refresh" content="5" />
 <a name="down"></a>

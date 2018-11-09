@@ -5,9 +5,9 @@ banned($user);
 banned_chat($user);
 ?>
 <div class="block">
-<iframe name="chat" id="chat" height="500" width="500" src="engine.php#down"></iframe><br>
+<iframe name="chat" id="chat" height="500" width="250" src="engine.php#down"></iframe><br>
 <form action="" method="post" target="">
-    <input type="text" name="message" size="50"><br>
+    <input type="text" name="message" size="30"><br>
     <div class="a"> <input type="submit" name="send_message" valve="Отправить"></div></div>
     <?php
     $name = name($user);

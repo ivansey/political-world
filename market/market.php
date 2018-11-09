@@ -2,6 +2,7 @@
 include('../system/func.php');
 auth();
 banned($user);
+echo '<div class="a"><a href="index.php">На главную</a></div><br>';
 $type = $_GET['type'];
 echo '<div class="a"><a href="new_market.php">Создать предложение</a><br></div>';
 $store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . " ")->fetch();
@@ -22,5 +23,5 @@ echo '<div class="block">ID: ' . $market['id_user'] . ', тип: ' . $market['ty
 	';
 }
 }
-echo '<div class="a"><a href="index.php">На главную</a></div>';
+
 ?>

@@ -10,7 +10,7 @@ $leader = $conn->query("SELECT * FROM `users` WHERE `id` = '" . $party[leader] .
 
 if($leader[id] == $user[id]) {
 $conn->query("DELETE FROM `party` WHERE `id` = ".$id." ");
-$conn->query("UPDATE `users` SET `party` = 0, `tag` = "" WHERE `party` = ".$id." ");
+$conn->query("UPDATE `users` SET `party` = 0, `tag` = '' WHERE `party` = ".$id." ");
 echo '<div class="block">Успешно</div>';
 } else {
 echo '<div class="block">Ошибка</div>';

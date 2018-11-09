@@ -16,15 +16,17 @@ if ($regions == 0) {
     die('<div class="block">Региона нет</div>');
 }
 $region = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $id . " ")->fetch();
+$gover = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $region['gover'] . " ")->fetch();
 $guber_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $region['guber'] . " ")->fetch();
-$guber = name($guber_sql['name']);
+$guber = name($guber_sql);
 echo '
     <div class="block">
-        Название: ' . $region['name'] .  ' <br>
+        Название: ' . $region['name'] . ' <br>
         Губернатор: ' . $guber . ' <br>
+        Государство: <a href="../goverment/view.php?id=' . $gover['id'] . '">' . $gover['name'] . '</a><br>
     </div>
 ';
-if ($user['region'] !=  $id) {
+if ($user['region'] != $id) {
     echo '
             <form action="" method="post">
                 <div class="a">
@@ -36,16 +38,17 @@ if ($user['region'] !=  $id) {
 
 if (isset($_POST['fly'])) {
     $conn->query("UPDATE `users` SET `region` = " . $id . " WHERE `id` = " . $user['id'] . " ");
-    header('Location: ?id='.$id.'');
+    header('Location: ?id=' . $id . '');
 }
-if ($region['gover'] == 0) {
-echo '<div class="a"><a href=/goverment/add.php?reg_id='.$region['id'].'>Создать государство</a></div>';
+$king_sql = $conn->query("SELECT COUNT(*) FROM `goverment` WHERE `king_id` = " . $user['id'] . " ")->fetch()['COUNT(*)'];
+if ($region['gover'] == 0 AND $king_sql == 0) {
+    echo '<div class="a"><a href=../goverment/add.php?reg_id=' . $region['id'] . '>Создать государство</a></div>';
 }
- if ($user['priv'] > 2) {
-echo '<div class="a"><a href=/delete/delete_region.php?id='.$id.'>Удалить(с. адм.)</a></div>';
+if ($user['priv'] > 2) {
+    echo '<div class="a"><a href=../delete/delete_region.php?id=' . $id . '>Удалить(с. адм.)</a></div>';
 }
- if ($user['priv'] > 2) {
-echo '<div class="a"><a href=edit.php?id='.$id.'>Изменить(с. адм.)</a></div>';
+if ($user['priv'] > 2) {
+    echo '<div class="a"><a href=edit.php?id=' . $id . '>Изменить(с. адм.)</a></div>';
 }
 //
 echo '<div class="a"><a href="../game.php">На главную</a></div>';
