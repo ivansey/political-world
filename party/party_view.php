@@ -19,7 +19,7 @@ if ($user['party'] == $party['id']) {
 if ($user['party'] == 0) {
     echo '<div class="a"> <a href=join_party.php?id=' . $party['id'] . '>Вступить в партию</a></div>';
 }
-echo '<div class="a"> <a href=change_reg.php?id=' . $party['id'] . '>Изменить домашний регион на текущий</a></div>';
+
 if ($leader['id'] == $user['id']) {
     echo '<div class="a">
                 <form action="" method="post">
@@ -36,8 +36,9 @@ if (isset($_POST['prt'])) {
                     Название партии<br>
                     <div class="a"><input type="text" name="name"></div>
                     <div class="a"><input type="submit" name="edit_name" value="Управление"><br></div>
+                    <div class="a"> <a href=change_reg.php?id=' . $party['id'] . '>Изменить домашний регион на текущий</a></div>
                     Роспуск партии<br>
-                    <div class="a"><a href=../delete/delete_party.php?id=' . $id . '>Роспустить партию</a><br></div>
+                    <div class="a"><input type="submit" name="dlt" value="Роспуск партии"<br></div>
                 </form>
             </div></div>
     ';
@@ -48,6 +49,11 @@ if (isset($_POST['prt'])) {
         $query->bindValue(":id", $id);
         $query->execute();
         echo '<div class="block">Название измененно</div>';
+    }
+    if (isset($_POST['dlt'])) {
+        $conn->query("DELETE FROM `party` WHERE `id` = ".$id." ");
+        $conn->query("UPDATE `users` SET `party` = 0, `tag` = '' WHERE `party` = ' " . $id . " ' ");
+        echo '<div class="block">Партия распущена</div>';
     }
 }
 echo '<br>';

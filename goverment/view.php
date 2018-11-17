@@ -11,13 +11,13 @@ banned($user);
 
 $id = _num(_string($_GET['id']));
 
-$goverments = $conn->query("SELECT COUNT(*) FROM `goverment` WHERE `id` = " . $id . " ")->fetch()['COUNT(*)'];
+$goverments = $conn->query("SELECT COUNT(*) FROM `goverment` WHERE `id` = " . $id)->fetch()['COUNT(*)'];
 if ($goverments == 0) {
     die('<div class="block">Региона нет</div>');
 }
-$goverment = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $id . " ")->fetch();
-$king_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $goverment['king_id'] . " ")->fetch();
-$region = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $goverment['pri_reg'] . " ")->fetch();
+$goverment = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $id)->fetch();
+$king_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $goverment['king_id'])->fetch();
+$region = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $goverment['pri_reg'])->fetch();
 $king = name($king_sql);
 
 if ($goverment['type'] == 0) {
@@ -51,10 +51,25 @@ if ($party_reg['reg'] == $goverment['pri_reg'] AND $party_reg['gover'] != $gover
             </form>
     ';
 }
+$parlament = $conn->query("SELECT COUNT(*) FROM `parlament` WHERE `gover` = " . $id)->fetch()['COUNT(*)'];
+if ($user['id'] == $goverment['king_id']) {
+    if ($parlament == 0) {
+        echo '<div class="a"><a href="create_parlament.php?id=' . $id . '">Создать парламент</a> </div>';
+    }
+}
+
+if ($parlament == 1) {
+    echo '<div class="a"><a href="../parliament/index.php?id=' . $id . '">Парламент</a> </div>';
+}
 
 if ($_POST['party_plus']) {
     $conn->query("UPDATE `party` SET `gover` = " . $goverment['id'] . " WHERE `id` = " . $user['party'] . " ");
-    echo 'Ваша партия участует в политической жизни государства';
+    echo '<br><div class="block">Ваша партия участует в политической жизни государства</div><br>';
+}
+if ($user['gover'] ==  $id) {
+    echo '
+            <div class="a"><a href="elections/index.php?id=' . $id . '">Выборы</a></div>
+    ';
 }
 
 if (isset($_POST['fly'])) {

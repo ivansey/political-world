@@ -10,7 +10,7 @@ if ($option) {
     $styless = $conn->query("SELECT * FROM `styles` WHERE `id` = " . $option . " ")->fetch();
     if ($styless['name'] != '') {
         $conn->query("UPDATE `users` SET `style` = '" . $option . "' WHERE `id` = " . $user['id'] . " ");
-        die('Дизайн успешно изменен<br><a href=index.php>В настройки</a>');
+        die('<div class="block">Дизайн успешно изменен<br><div class="a"><a href=index.php>В настройки</a></div></div>');
     } else {
         die('Ошибка 1');
     }

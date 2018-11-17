@@ -16,5 +16,6 @@ $name = htmlentities($name);
 $query = $conn->prepare('INSERT INTO `regions` SET `name` = :name, `gover` = 0');
 $query->bindValue(":name", $name);
 $query->execute();
-
+//$reg = $conn->query("SELECT * FROM regions WHERE name = " . $name)->fetch();
+log_admin($user, "Создан регион:" . $name);
 echo '<div class="block">Регион создан<div class="a"><a href="../game.php">На главную</a></div></div>';

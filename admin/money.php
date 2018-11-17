@@ -14,3 +14,4 @@ id<br>
 <input type="text" name="gold"><br>
 <input type="submit" name="sbm" value="Изменить"><br>
 </post>
+</form>

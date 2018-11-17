@@ -5,21 +5,22 @@ banned($user);
 moder_auth($user);
 
 echo '
-Модераторские утилиты<br>
+<div class="block"> Модераторские утилиты<br>
     <!--<a href=money.php>Денежные средства[РАБОТАЕТ]</a><br>-->
-    <a href=ban.php>Бан\Разбан игроков[РАБОТАЕТ]</a><br>
-    <a href=index.php>Чат[НЕ РАБОТАЕТ]</a><br>';
-if($user['priv'] >= 2){
+    <div class="a"><a href=ban.php>Бан\Разбан игроков</a></div><br>
+    <div class="a"><a href=index.php>Чат[НЕ РАБОТАЕТ]</a></div></div><br>';
+if ($user['priv'] >= 2) {
     echo '
-    Администраторские утилиты<br>
-	<a href=info.php>Редактирование информации об игроках[НЕ РАБОТАЕТ]</a><br>';
+    <div class="block">Администраторские утилиты<br>
+	<div class="a"><a href=info.php>Редактирование информации об игроках[НЕ РАБОТАЕТ]</a></div></div><br>';
 }
-if($user['priv'] >= 3){
+if ($user['priv'] >= 3) {
     echo '
-    Супер-дминистраторские утилиты<br>
-    <a href=money.php>Денежные средства[РАБОТАЕТ]</a><br>
-	<a href=priv.php>Изменение привелегий[В ПРОЦЕССЕ]</a><br>
-	<a href=server_info.php>Информация о сервере[НЕ РАБОТАЕТ]</a>';
+    <div class="block">Супер-дминистраторские утилиты<br>
+    <div class="a"><a href=money.php>Денежные средства</a></div><br>
+	<div class="a"><a href=priv.php>Изменение привелегий[В ПРОЦЕССЕ]</a></div><br>
+	<div class="a"><a href=server_info.php>Информация о сервере[НЕ РАБОТАЕТ]</a></div><br>
+	<div class="a"><a href="log_admin.php">Логи админов</a></div></div><br>';
 }
-?>
+echo '<div class="a"><a href="../game.php">На главную</a></div>';
 

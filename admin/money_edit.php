@@ -11,5 +11,6 @@ $query->bindValue(":gold", $gold);
 $query->bindValue(":money", $money);
 $query->bindValue(":id", $id);
 $query->execute();
+log_admin($user, 'Выставлен бан игроку ' . name($id) . ' ' .  $money );
 header("Location: money.php");
 ?>

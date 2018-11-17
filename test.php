@@ -7,8 +7,7 @@
  */
 include('system/func.php');
 //require_once('system/class.php');
-require_once('system/class/store/Store_add.php');
-$class = new Store_add();
-$class->echo = "Кодеры ебали медведя";
-$echo = $class->echo;
+require_once('system/class/Echo_Name.php');
+$class = new Echo_Name($conn, $user['id']);
+$echo = $class->echo_name();
 echo $echo;

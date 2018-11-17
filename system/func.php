@@ -51,7 +51,7 @@ if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
 //Инфа о складе 
 //$store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
 //ИД юзера
-$id_user = $user['id'];
+//$id_user = $user['id'];
 //Админ/Модер проверка
 function moder_auth(array $user)
 {
@@ -143,4 +143,8 @@ function store_del_metal($id_user, $res)
     $query->execute();
 }
 
-?>
+function log_admin(array $user, $about) {
+    global $conn;
+    $datetime = date('Y-m-d H:i:s');
+    $conn->query("INSERT INTO admin_log SET id_user = " . $user['id'] . ", about = '" . $about . "', datetime = '" . $datetime . "'");
+}

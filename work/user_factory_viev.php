@@ -14,9 +14,10 @@ if ($factory_sql == 0) {
     echo 'У вас нет фабрики';
     die('<div class="a"><a href="../game.php">На главную</a></div> ');
 }
-$factory = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory . "")->fetch();
-$user_store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
+$factory = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory)->fetch();
+$user_store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'])->fetch();
 $type = $factory['type'];
+$type_num = 0;
 //Переменные для переработчиков
 if ($type == "metal") {
     $type_ore = "metal_ore";
@@ -263,6 +264,19 @@ if (isset($_POST['add_ore2'])) {
     echo 'Товар загружен<br>';
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
+}
+if (isset($_POST['del'])) {
+    $factory_del = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory)->fetch();
+    $conn->query("UPDATE `users` SET `money` = `money` + " . $factory_del['money'] . " WHERE `id` = " . $user['id']);
+    if ($type_num == 0) {
+        $conn->query("UPDATE `store` SET `" . $factory_del['type'] . "` = `" . $factory_del['type'] . "` + " . $factory_del['store'] . " WHERE `id` = " . $user['id']);
+    } elseif ($type_num == 1) {
+        $conn->query("UPDATE `store` SET `" . $factory_del['type'] . "` = `" . $factory_del['type'] . "` + " . $factory_del['store'] . ", `" . $type_ore . "` = `" . $type_ore . "` + " . $factory_del['ore'] . " WHERE `id` = " . $user['id']);
+    } elseif ($type_num == 2) {
+        $conn->query("UPDATE `store` SET `" . $factory_del['type'] . "` = `" . $factory_del['type'] . "` + " . $factory_del['store'] . ", `" . $type_ore . "` = `" . $type_ore . "` + " . $factory_del['ore'] . ", `" . $type_ore2 . "` = `" . $type_ore2 . "` + " . $factory_del['ore2'] . " WHERE `id` = " . $user['id']);
+    }
+    $conn->query("DELETE FROM `factory` WHERE `id` = " . $id_factory);
+    echo '<div class="block">Фабрика удалена</div>';
 }
 echo '</div>';
 echo '<div class="a"><a href="factory_viever.php">Назад</a></div>';

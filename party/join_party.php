@@ -10,10 +10,8 @@ auth();
 banned($user);
 
 $id = $_GET['id'];
-echo $id;
 $party = $conn->query("SELECT * FROM `party` WHERE `id` = " . $id . " ")->fetch();
 $tag = $party['tag'];
-echo $tag;
 $query = $conn->prepare('UPDATE `users` SET `party` = :id, `tag` = :tag WHERE `id` = :user');
 $query->bindValue(":id", $id);
 $query->bindValue(":tag", $tag);

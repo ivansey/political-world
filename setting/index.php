@@ -23,7 +23,7 @@ case 1:
 echo '<div class="block">Ваш токен: '.$user[api_token]. '</br><div class="a"><a href="index.php">Назад</a></div></div>';
 break;
 case 2:
-echo 'Выбрать стиль:<br><form method="post" action="change_style.php"><select name="taskOption">';
+echo '<div class="block">Выбрать стиль:<br><form method="post" action="change_style.php"><select name="taskOption"></div>';
 $styles = $conn->query("SELECT * FROM `styles`");
 while($style=$styles->fetch()){
 echo "<div class='block'> <option value=$style[id]>$style[name]</option>";

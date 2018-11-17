@@ -23,6 +23,7 @@ if (isset($_POST['name_edit'])) {
     $query->bindValue(":name", $name);
     $query->bindValue(":id", $id);
     $query->execute();
+  log_admin($user, 'Название региона изменено на ' . $name);
     echo '<div class="block">Регион изменён<div class="a"><a href="viev.php?id=' . $id . '">Назад</a></div></div>';
 }
 ?>

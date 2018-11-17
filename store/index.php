@@ -34,6 +34,12 @@ if($sql == 0) {
 	Топливо: ' . $resourse['fuel'] . ' <br>' . '
 	Еда: ' . $resourse['food'] . ' <br>' . '
 	</div>
+	<form action="" method="post"><input type="submit" name="add" value="+1000 FOOD"></form>
 	<div class="a"><a href="../game.php">В главное меню</a></div>';
+    if (isset($_POST['add'])) {
+        $store = new Store($conn, $user['id'], 'food', 1000);
+        $add = $store->add();
+        header('Location: /store');
+    }
 }
 ?>

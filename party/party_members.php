@@ -19,10 +19,10 @@ while ($i < $sql) {
     $echo = $conn->query("SELECT * FROM `users` WHERE `party` = '" . $id . "' LIMIT " . $i . "," . $i2 . " ")->fetch();
     if ($party['leader'] == $user['id']) {
         $msg = name($echo);
-if($echo[id] != $user[id]) {
-        $kick = ' <div class="a"> <a href=kick.php?id=' . $echo['id'] . '>Кикнуть</a></div><br>';
-} else {
-$kick = '';
+        if($party['leader'] == $user['id']) {
+            $kick = ' <div class="a"> <a href=kick.php?id=' . $echo['id'] . '>Кикнуть</a></div><br>';
+        } else {
+            $kick = '';
 }
         echo '<div class="block">' . $msg . $kick . '</div>';
     } else {
