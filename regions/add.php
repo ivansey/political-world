@@ -12,12 +12,14 @@ banned($user);
 
 echo '
     <div class="block">
+    <div class="block-info">
         Создание региона<br>
-        <div class="a">
             <form action="handler.php" method="post">
-                <input type="text" name="name">
+                <input type="text" name="name"></div>
+                <div class="a">
                 <input type="submit" name="create" value="Создать">
             </form>
         </div>
     </div>
 ';
+echo '<div class="a-down"><a href="index.php">Назад</a></div>';

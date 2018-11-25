@@ -21,10 +21,14 @@ $guber_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $region['guber
 $guber = name($guber_sql);
 echo '
     <div class="block">
-        Название: ' . $region['name'] . ' <br>
-        Губернатор: ' . $guber . ' <br>
-        Государство: <a href="../goverment/view.php?id=' . $gover['id'] . '">' . $gover['name'] . '</a><br>
-    </div>
+        <div class="block-info">
+        Название: ' . $region['name'] . ' <br><br>
+        Государство: <a href="../goverment/view.php?id=' . $gover['id'] . '">' . $gover['name'] . '</a>
+        </div>
+        <br><div class="block-info">
+        Губернатор: ' . $guber . ' <br><br>
+        </div><br>
+    
 ';
 if ($user['region'] != $id) {
     echo '
@@ -50,6 +54,6 @@ if ($user['priv'] > 2) {
 if ($user['priv'] > 2) {
     echo '<div class="a"><a href=edit.php?id=' . $id . '>Изменить(с. адм.)</a></div>';
 }
-//
-echo '<div class="a"><a href="../game.php">На главную</a></div>';
+echo '</div>';
+echo '<div class="a-down"><a href="../game.php">На главную</a></div>';
 ?>

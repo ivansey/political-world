@@ -21,10 +21,10 @@ $reg = $conn->query("SELECT COUNT(*) FROM `regions` WHERE `id` = " . $reg_id . "
 $king = $conn->query("SELECT COUNT(*) FROM `goverment` WHERE `king_id` = " . $user['id'] . " ")->fetch()['COUNT(*)'];
 
 if ($king['king_id'] == $user['gover'] AND $king['id'] != 0) {
-    echo '<div class="block">Вы и так глава государства<div class="a"><a href="../game.php">На главную</a></div></div>'; exit;
+    echo '<div class="block">Вы и так глава государства</div><div class="a-down"><a href="../game.php">На главную</a></div>'; exit;
 }
 if ($reg == 0) {
-    echo '<div class="block">Регион занят<div class="a"><a href="../game.php">На главную</a></div></div>'; exit;
+    echo '<div class="block">Регион занят</div><div class="a-down"><a href="../game.php">На главную</a></div>'; exit;
 }
 
 $query = $conn->prepare('INSERT INTO `goverment` SET `name` = :name, `king_id` = :user, `pri_reg` = :reg_id');
@@ -45,4 +45,4 @@ $query->bindValue(":gover", $gover['id']);
 $query->bindValue(":id", $user['id']);
 $query->execute();
 
-echo '<div class="block">Государство создано<div class="a"><a href="../game.php">На главную</a></div></div>';
+echo '<div class="block">Государство создано</div><div class="a-down"><a href="../game.php">На главную</a></div>';

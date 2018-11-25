@@ -26,6 +26,7 @@ if ($goverment['type'] == 0) {
 
 echo '
     <div class="block">
+    <div class="block-info">
         Название: ' . $goverment['name'] .  ' <br>
         Глава: ' . $king . ' <br>
         Столица: <a href="../regions/viev.php?id=' . $region['id'] . '">' . $region['name'] .  '</a> <br>
@@ -48,13 +49,17 @@ if ($party_reg['reg'] == $goverment['pri_reg'] AND $party_reg['gover'] != $gover
                 <div class="a">
                     <input type="submit" name="party_plus" value="Участвовать в политике государства">
                 </div>
-            </form>
+            </form><br>
     ';
 }
-
+if ($king_sql['king_id'] == $user['id']) {
+    echo '<div class="a"><a href="create_parlament.php?id=' . $id . '">Создать парламент</a></div>';
+}
+echo '<div class="a"><a href="/parliament/index.php?id=' . $id . '">Парламент</a></div>';
+echo '<div class="a"><a href="elections/index.php?id=' . $id . '">Выборы</a></div>';
 if ($_POST['party_plus']) {
     $conn->query("UPDATE `party` SET `gover` = " . $goverment['id'] . " WHERE `id` = " . $user['party'] . " ");
-    echo 'Ваша партия участует в политической жизни государства';
+    echo '<div class="block-info">Ваша партия участует в политической жизни государства</div>';
 }
 
 if (isset($_POST['fly'])) {
@@ -69,5 +74,5 @@ echo '<div class="a"><a href=/delete/delete_region.php?id='.$id.'>Удалить
 echo '<div class="a"><a href=edit.php?id='.$id.'>Изменить(с. адм.)</a></div>';
 }
 */
-echo '<div class="a"><a href="../game.php">На главную</a></div>';
+echo '</div><div class="a-down"><a href="../game.php">На главную</a></div>';
 ?>

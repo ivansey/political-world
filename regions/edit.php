@@ -7,9 +7,10 @@ $id = _num(_string($_GET['id']));
 
 echo '
     <div class="block">
+    <div class="block-info">
         <form action="" method="post">
             Имя региона
-            <input type="text" name="name">
+            <input type="text" name="name"></div>
             <div class="a">
                 <input type="submit" name="name_edit" value="Изменить">
             </div>
@@ -23,6 +24,6 @@ if (isset($_POST['name_edit'])) {
     $query->bindValue(":name", $name);
     $query->bindValue(":id", $id);
     $query->execute();
-    echo '<div class="block">Регион изменён<div class="a"><a href="viev.php?id=' . $id . '">Назад</a></div></div>';
+    echo '<div class="block">Регион изменён</div>';
 }
-?>
+echo '<div class="a-down"><a href="viev.php?id=' . $id . '">Назад</a></div>';

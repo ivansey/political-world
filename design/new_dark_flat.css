@@ -1,0 +1,113 @@
+
+body {
+    margin: 0 auto;
+    text: center;
+    max-width: 320px;
+    background-color: RGB(128, 128, 128); /* Фоновая картинка */
+    background-size: cover; /* Растягиваем фон */
+    font-size: 14px;
+    word-wrap: break-word;
+    font-family: "Palatino Linotype";
+
+}
+
+.block {
+    background: rgba(0, 0, 0, 0.6); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+
+
+.block-info {
+    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-header {
+    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+
+}
+
+.a {
+    padding: 10px;
+    text-align: center;
+    background: #242324;
+    border-top: 1px solid #1b1b1e;
+    border-bottom: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #a9a9ff;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.a-down {
+    padding: 20px;
+    text-align: center;
+    background: #242324;
+    border-top: 1px solid #1b1b1e;
+    border-bottom: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #a9a9ff;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+}
+
+a {
+    color: #bbb5ff;
+    text-decoration: none;
+}
+
+a:active {
+    color: #bbb5ff;
+}
+
+a:visited {
+    color: #bbb5ff;
+    text-decoration: none;
+}
+
+input[type=text] {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type=submit] {
+    width: 200px;
+    height: 50px;
+    color: #ffffff;
+    background: rgba(0,0,0,0.60);
+    outline: none;
+    user-select: none;
+}
+
+input:hover[type=submit] {
+    background: rgba(0,0,0,0.75);
+}
+
+input:active[type=submit] {
+    background: rgba(0,0,0,0.50);
+}
+
+.chat {
+
+}
+
