@@ -9,4 +9,14 @@
 class Store_add
 {
     public $echo;
+
+    public function __construct($echo)
+    {
+        $this->echo = $echo;
+    }
+
+    public function echo_call() {
+        return
+            $this->echo;
+    }
 }
