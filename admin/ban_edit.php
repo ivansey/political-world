@@ -12,6 +12,7 @@ $query->bindValue(":time", $time);
 $query->bindValue(":about", $about);
 $query->bindValue(":id", $id);
 $query->execute();
+log_admin($user, 'Выставлен бан игроку ' . name($id));
 header("Location: ban.php");
 ?>
     

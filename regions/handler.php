@@ -17,4 +17,4 @@ $query = $conn->prepare('INSERT INTO `regions` SET `name` = :name, `gover` = 0')
 $query->bindValue(":name", $name);
 $query->execute();
 
-echo '<div class="block">Регион создан<div class="a"><a href="../game.php">На главную</a></div></div>';
+echo '<div class="block">Регион создан<div class="a-down"><a href="../game.php">На главную</a></div></div>';
