@@ -6,10 +6,11 @@ $work = $user['work'];
 $sql = $conn->query("SELECT COUNT(*) FROM `factory`")->fetch()['COUNT(*)']; 
 $i = 0;
 
-echo '<div class="block">Работа<br>';
+echo '<div class="block">';
 $sqle = $conn->query("SELECT * FROM `factory`");
 while($sql=$sqle->fetch()){
-echo '<div class="block">Имя: ' . $sql['name'] . ', тип: ' . $sql['type'] . ', зарплата: ' . $sql['salary'] . ', процент выдаваемого ресурса: ' . $sql['res'];
+$ftype = $conn->query("SELECT * FROM `factory_types` WHERE `res` = '" . $sql['type'] . "'")->fetch();
+echo '<div class="block">Имя: ' . $sql['name'] . ', тип: ' . $ftype['name'] . ', зарплата: ' . $sql['salary_money'] . ', процент выдаваемого ресурса: ' . $sql['salary_res'];
 	echo '
 		<div class="a"><a href="factory_viev.php?factory_id=' . $sql['id'] . '">Открыть страницу фабрики</a></div></div><br>
 	';

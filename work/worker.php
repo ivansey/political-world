@@ -5,10 +5,8 @@ banned($user);
 echo '<div class="block">';
 $work = $user['work'];
 $factory = $conn->query("SELECT * FROM `factory` WHERE `id` = '" . $work . "'")->fetch();
-$exp = $conn->query("SELECT * FROM `parametr` WHERE `name` = 'exp_work'")->fetch();
-$material = $conn->query("SELECT * FROM `parametr` WHERE `name` = 'material_factory_" . $factory['type'] . "'")->fetch();
-$material_ore = $conn->query("SELECT * FROM `parametr` WHERE `name` = 'ore_factory_" . $factory['type'] . "'")->fetch();
-$material_ore2 = $conn->query("SELECT * FROM `parametr` WHERE `name` = 'ore2_factory_" . $factory['type'] . "'")->fetch();
+$exp = $conn->query("SELECT * FROM `parametr` WHERE `type` = '0'")->fetch();
+$material_income = $conn->query("SELECT * FROM `parametr` WHERE `type` = $factory[type] ")->fetch();
 $type = $factory['type'];
 
 if ($work == 0) {
@@ -17,47 +15,31 @@ if ($work == 0) {
     if ($user['energy'] <= 0) {
         die('Не хватает энергии');
     }
-    if ($factory['money'] < $factory['salary']) {
+    if ($factory['budget_money'] < $factory['salary_money']) {
         die('Фабрика не сможет выдать зарплату');
     }
-    $res = $factory['res'];
-    $mater = $material['value'] * $res / 100;
-    $material_fab = $material['value'] - $mater;
-    $ore = $material_ore['value'];
-    $ore2 = $material_ore2['value'];
-    $conn->query("UPDATE `users` SET `exp` = `exp` + '" . $exp['value'] . "', `money` = `money` + '" . $factory['salary'] . "',`energy` = `energy`-10 WHERE `id` = '" . $user['id'] . "'");
-    if (($type == "metal_ore") OR ($type == "tin_ore") OR ($type == "oil") OR ($type == "food")) {
-        $conn->query("UPDATE `factory` SET `store` = `store` + '" . $material_fab . "', `money` = `money` - `salary` WHERE `id` = '" . $user['work'] . "'");
-    }
-    if (($type == "tin") OR ($type == "metal") OR ($type == "fuel")) {
-        if ($ore > $factory['ore']) {
-            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
-        }
-        $query = $conn->prepare('UPDATE factory SET ore = ore - :ore, store = store + :material, money = money - salary WHERE id = :user');
-        $query->bindValue(":material", $material_fab);
-        $query->bindValue(":ore", $ore);
-        $query->bindValue(":user", $work);
-        $query->execute();
-    }
-    if ($type == "steel") {
-        if ($ore > $factory['ore']) {
-            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
-        }
-        if ($ore2 > $factory['ore2']) {
-            die('Фабрика не сможет начать работу<br><div class="a"><a href="../game.php">В главное меню</a></div>');
-        }
-        $query = $conn->prepare('UPDATE factory SET ore = ore - :ore, ore2 = ore2 - :ore2, store = store + :material, money = money - salary WHERE id = :user');
-        $query->bindValue(":material", $material_fab);
-        $query->bindValue(":ore", $ore);
-        $query->bindValue(":ore2", $ore2);
-        $query->bindValue(":user", $work);
-        $query->execute();
-    }
-    $conn->query("UPDATE `store` SET `" . $factory['type'] . "` = `" . $factory['type'] . "` + '" . $mater . "' WHERE `id` = '" . $user['id'] . "'");
-    //$conn->query("UPDATE `factory` SET `store` = `store` + '" . $material_fab . "', `money` = `money` - `salary` WHERE `id` = '" . $user['work'] . "'");
-    echo 'Получено денег: ' . $factory['salary'] . ', опыта: ' . $exp['value'] . ', материалов: ' . $mater;
-    echo '<br><div class="a"><a href="worker.php">Повторно</a></div>';
 }
+    $res = $factory['salary_res'];
+    $mater = $material_income['value'] * $res / 100;
+    $material_fab = $material_income['value'] - $mater;
+    $conn->query("UPDATE `users` SET `exp` = `exp` + '" . $exp['value'] . "', `money` = `money` + '" . $factory['salary_money'] . "',`energy` = `energy`-10 WHERE `id` = '" . $user['id'] . "'");
+        $conn->query("UPDATE `factory` SET `budget_res` = `budget_res` + '" . $material_fab . "', `budget_money` = `budget_money` - `salary_money` WHERE `id` = '" . $user['work'] . "'");
+//
+$suka = $conn->query("SELECT * FROM `store` WHERE `id` = $user[id] AND `type` = $type")->fetch();
+if($suka[sum] == '') {
+$query = $conn->prepare('INSERT `store` SET `type` = :type, `id` = :id, `sum`= 0 ');
+            $query->bindValue(":type", $type);
+            $query->bindValue(":id", $user[id]);
+            $query->execute();
+ $conn->query("UPDATE `store` SET `sum` = `sum` + $mater WHERE `id` = $user[id] AND `type` = $type");
+} else {
+ $conn->query("UPDATE `store` SET `sum` = `sum` + $mater WHERE `id` = $user[id] AND `type` = $type");
+}
+//
+    echo 'Получено денег: ' . $factory['salary_money'] . ', опыта: ' . $exp['value'] . ', материалов: ' . $mater;
+    echo '<br><div class="a"><a href="worker.php">Повторно</a></div>';
 echo '</div>';
 echo '<br><div class="a"><a href="index.php">Назад</a></div>';
-echo '<br><div class="a"><a href="../game.php">В главное меню</a></div>';
+echo '<div class="a"><a href="../game.php">В главное меню</a></div>';
+
+?>

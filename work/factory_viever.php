@@ -3,16 +3,13 @@ include('../system/func.php');
 auth();
 banned($user);
 
-$sum = $conn->query("SELECT COUNT(*) FROM factory WHERE id_user = '" . $user['id'] . "'")->fetch()['COUNT(*)'];
-$i = 0;
-$i2 = 1;
-while($sum >= $i) {
-	$sql = $conn->query("SELECT * FROM factory WHERE id_user = '" . $user['id'] . "' LIMIT " . $i . "," . $i2 . "")->fetch();
-	echo '<div class="block">Имя: ' . $sql['name'] . ', тип: ' . $sql['type'];
+	$sql = $conn->query("SELECT * FROM factory WHERE leader = '" . $user['id'] . "'");
+while($sqll=$sql->fetch()){
+$ftype = $conn->query("SELECT * FROM `factory_types` WHERE `res` = '" . $sqll['type'] . "'")->fetch();
+	echo '<div class="block">Имя: ' . $sqll['name'] . ', тип: ' . $ftype['name'];
 	echo '
-		<div class="a"><a href="user_factory_viev.php?id_factory=' . $sql['id'] . '">Управление</a></div></div><br>
+		<div class="a"><a href="user_factory_viev.php?id_factory=' . $sqll['id'] . '">Управление</a></div></div><br>
 	';
-	$i++;
-	$i2++;
 }
+echo '<div class="a"><a href="index.php">Назад</a></div>';
 ?>

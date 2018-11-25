@@ -20,10 +20,19 @@ echo "<div class='block'>
 echo '
 <input type="hidden" name="id" value="'.$id.'"></div>';
 ?>
-   <div class="a"><input name="submit" type="submit" valve="Отправить">
+            <div class="a"><input name="submit" type="submit" valve="Отправить">
+
         </center>
     </form>
-</div>
+
 <?
-echo "<div class='a'><a href=view_comments.php?id=$id>Назад</a></a>";
+echo '
+<form method="post"><input name="smile" type="submit" value="Показать смайлы"></div></div></form>
+';
+if (isset($_POST['smile'])) {
+    echo '<div class="block"><iframe width="275" srcdoc="';
+    look_smile();
+    echo '"></iframe></div></div>';
+}
+echo "<br><div class='a'><a href=view_comments.php?id=$id>Назад</a></a>";
 ?>

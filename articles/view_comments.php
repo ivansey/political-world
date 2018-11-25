@@ -15,14 +15,15 @@ if (($con_num = count($comments)) === 0) {
 } else {
     foreach ($comments as $comment) {
         $autist = $conn->query("SELECT * FROM users WHERE id = $comment[author_id]")->fetch();
-$name = name($autist);
-        echo "<div class='block'>$name<hr>$comment[text]";
-if ($user['priv'] > 0) {
-echo '<a href=/delete/delete_comment.php?id='.$comment[id].'>[x]</a>';
-}
-echo '</div>';
+        $name = name($autist);
+        $text = text_smile($comment['text']);
+        echo "<div class='block'>$name<hr>$text";
+        if ($user['priv'] > 0) {
+            echo '<a href=/delete/delete_comment.php?id=' . $comment[id] . '>[x]</a>';
+        }
+        echo '</div>';
     }
 }
 echo "<div class='a'><a href=send_comment.php?id=$id>Написать комментарий</a></div>";
-echo "<hr><div class='a'><a href=view_article.php?id=$id>Назад</a></div>";
+echo "<br><div class='a'><a href=view_article.php?id=$id>Назад</a></div>";
 ?>

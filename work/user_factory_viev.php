@@ -2,69 +2,41 @@
 include('../system/func.php');
 auth();
 banned($user);
+
 echo '<div class="block">';
 //Переменные и вывод ошибок
 $id_factory = $_GET['id_factory'];
-$factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `id_user` = " . $user['id'] . "")->fetch()['COUNT(*)'];
+$factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `leader` = $user[id]")->fetch()['COUNT(*)'];
 if ($factory_sql == 0) {
-    die('У вас нет фабрик');
+    die('<div class="block">У вас нет фабрик</div>');
 }
-$factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `id` = " . $id_factory . "")->fetch()['COUNT(*)'];
-if ($factory_sql == 0) {
-    echo 'У вас нет фабрики';
-    die('<div class="a"><a href="../game.php">На главную</a></div> ');
+$factory = $conn->query("SELECT * FROM `factory` WHERE `id` = $id_factory AND `leader` = $user[id] ")->fetch();
+if($factory[name] == "") {
+        die('<div class="block">Ошибка</div>');
 }
-$factory = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory . "")->fetch();
-$user_store = $conn->query("SELECT * FROM `store` WHERE `id` = " . $user['id'] . "")->fetch();
+$user_store = $conn->query("SELECT * FROM `store` WHERE `id` = $user[id] ")->fetch();
 $type = $factory['type'];
-//Переменные для переработчиков
-if ($type == "metal") {
-    $type_ore = "metal_ore";
-    $type_num = 1;
-    $store_ore = $user_store['metal_ore'];
-}
-if ($type == "tin") {
-    $type_ore = "tin_ore";
-    $type_num = 1;
-    $store_ore = $user_store['tin_ore'];
-}
-if ($type == "fuel") {
-    $type_ore = "oil";
-    $type_num = 1;
-    $store_ore = $user_store['oil'];
-}
-if ($type == "steel") {
-    $type_ore = "metal";
-    $type_ore2 = "tin";
-    $type_num = 2;
-    $store_ore = $user_store['metal'];
-    $store_ore2 = $user_store['tin'];
-}
+$ftype = $conn->query("SELECT * FROM `factory_types` WHERE `res` = $type ")->fetch();
+$nnname = name($user);
 //Формы
-echo 'Имя ';
+echo 'Название: ';
 echo $factory['name'];
 echo '<br>';
-echo 'Тип ';
-echo $factory['type'];
+echo 'Тип: ';
+echo $ftype['name'];
 echo '<br>';
-echo 'Зарплата ';
-echo $factory['salary'];
+echo 'Зарплата: ';
+echo $factory['salary_money'];
 echo '<br>';
-echo 'Процент выдаваемого ресурса ';
-echo $factory['res'];
+echo 'Процент выдаваемого ресурса: ';
+echo $factory['salary_res'];
 echo '<br>';
-echo 'Владелец ';
-echo $user['name'];
+echo 'Владелец: ';
+echo $nnname;
 echo '<br>';
-echo 'Остаток денежных средств: ' . $factory['money'] . '<br>';
-echo 'Готовых материалов на складе: ' . $factory['store'] . '<br>';
+echo 'Остаток денежных средств: ' . $factory['budget_money'] . '<br>';
 //Формы для переработчиков
-if ($type_num == 1) {
-    echo 'Сырья на складе: ' . $factory['ore'] . '<br>';
-}
-if ($type_num == 2) {
-    echo 'Второго сырья на складе: ' . $factory['ore2'] . '<br>';
-}
+echo 'Сырья на складе: ' . $factory['budget_res'] . '<br>';
 //Кнопка появления форм редактирования
 echo '
 	<form action="" method="post"><br>
@@ -108,27 +80,15 @@ if (isset($_POST['edit'])) {
 				<br>
 				<div class="a"><input type="submit" name="del" value="Закрыть фабрику"></div><br>
 	';
-    if ($type_num == 1) {
         echo '
                 
                 <div class="block">
-                Загрузить сырья на склад фабрики<br>
+                Загрузить сырье на склад фабрики<br>
 				<input type="text" name="ore"><br>
 				<div class="a"><input type="submit" name="add_ore" value="Начислить"></div><br>
 				<br>
 				</div>
 		';
-    }
-    if ($type_num == 2) {
-        echo ' 
-                <div class="block">
-                Загрузить второго сырья на склад фабрики<br>
-				<input type="text" name="ore2"><br>
-				<div class="a"><input type="submit" name="add_ore2" value="Начислить"></div><br>
-				<br>
-				</div>
-		';
-    }
     echo '</form>';
 }
 //Код редактирования
@@ -149,7 +109,7 @@ if (isset($_POST['edit_salary'])) {
     }
     $salary = $_POST['salary'];
     $salary = htmlentities($salary);
-    $query = $conn->prepare('UPDATE factory SET salary = :salary WHERE id = :id');
+    $query = $conn->prepare('UPDATE factory SET salary_money = :salary WHERE id = :id');
     $query->bindValue(":salary", $salary);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
@@ -163,7 +123,7 @@ if (isset($_POST['edit_res'])) {
     }
     $res = $_POST['res'];
     $res = htmlentities($res);
-    $query = $conn->prepare('UPDATE factory SET res = :res WHERE id = :id');
+    $query = $conn->prepare('UPDATE factory SET salary_res = :res WHERE id = :id');
     $query->bindValue(":res", $res);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
@@ -184,7 +144,7 @@ if (isset($_POST['add_money'])) {
     $query->bindValue(":money", $money);
     $query->bindValue(":id", $user['id']);
     $query->execute();
-    $query = $conn->prepare('UPDATE `factory` SET `money` = `money` + :money WHERE `id` = :id');
+    $query = $conn->prepare('UPDATE `factory` SET `budget_money` = `budget_money` + :money WHERE `id` = :id');
     $query->bindValue(":money", $money);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
@@ -193,15 +153,14 @@ if (isset($_POST['add_money'])) {
     echo '<meta http-equiv="Refresh" content="1" />';
 }
 if (isset($_POST['del_mater'])) {
-    $store = $factory['store'];
-    $type = $factory['type'];
+    $store = $factory['budget_res'];
     if ($store == 0) {
         die('Склад пуст');
     }
     //if ($type == 'metal') {
-        $conn->query("UPDATE `store` SET `" . $type . "` = `" . $type . "` + '" . $store . "' WHERE `id` = '" . $user['id'] . "'");
-        $query = $conn->prepare('UPDATE `factory` SET `store` = `store` - :store WHERE `id` = :id');
-        $query->bindValue(":store", $factory['store']);
+        $conn->query("UPDATE `store` SET `sum` = `sum` + $store WHERE `id` = $user[id] AND `type` = $type");
+        $query = $conn->prepare('UPDATE `factory` SET `budget_res` = `budget_res` - :store WHERE `id` = :id');
+        $query->bindValue(":store", $factory['budget_res']);
         $query->bindValue(":id", $factory['id']);
         $query->execute();
         echo 'Счёт изменён<br>';
@@ -211,11 +170,11 @@ if (isset($_POST['del_mater'])) {
 }
 if (isset($_POST['del_money'])) {
     $query = $conn->prepare('UPDATE `users` SET `money` = `money` + :money WHERE `id` = :id');
-    $query->bindValue(":money", $factory['money']);
+    $query->bindValue(":money", $factory['budget_money']);
     $query->bindValue(":id", $user['id']);
     $query->execute();
-    $query = $conn->prepare('UPDATE `factory` SET `money` = `money` - :money WHERE `id` = :id');
-    $query->bindValue(":money", $factory['money']);
+    $query = $conn->prepare('UPDATE `factory` SET `budget_money` = `budget_money` - :money WHERE `id` = :id');
+    $query->bindValue(":money", $factory['budget_money']);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
     echo 'Счёт выведен<br>';
@@ -225,17 +184,19 @@ if (isset($_POST['del_money'])) {
 if (isset($_POST['add_ore'])) {
     $ore = $_POST['ore'];
     $ore = htmlentities($ore);
-    if ($ore > $store_ore) {
+    $store_maat = $conn->query("SELECT * FROM `store` WHERE `id` = $user[id] AND `type` = $type")->fetch();
+    if ($ore > $store_maat[sum]) {
         die('Недостаточно материалов');
     }
     if ($ore < 0) {
         die('Недостаточно материалов');
     }
-    $query = $conn->prepare('UPDATE `store` SET `' . $type_ore . '` = `' . $type_ore . '` - :ore WHERE `id` = :id');
+    $query = $conn->prepare("UPDATE `store` SET `sum` = `sum` - :ore WHERE `id` = :user AND `type` = :type");
     $query->bindValue(":ore", $ore);
-    $query->bindValue(":id", $user['id']);
+    $query->bindValue(":user", $user[id]);
+    $query->bindValue(":type", $type);
     $query->execute();
-    $query = $conn->prepare('UPDATE `factory` SET `ore` = `ore` + :ore WHERE `id` = :id');
+    $query = $conn->prepare('UPDATE `factory` SET `budget_res` = `budget_res` + :ore WHERE `id` = :id');
     $query->bindValue(":ore", $ore);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
@@ -243,26 +204,13 @@ if (isset($_POST['add_ore'])) {
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
 }
-if (isset($_POST['add_ore2'])) {
-    $ore2 = $_POST['ore2'];
-    $ore2 = htmlentities($ore2);
-    if ($ore2 > $store_ore2) {
-        die('Недостаточно материалов');
-    }
-    if ($ore2 < 0) {
-        die('Недостаточно материалов');
-    }
-    $query = $conn->prepare('UPDATE `store` SET `' . $type_ore2 . '` = `' . $type_ore2 . '` - :ore WHERE `id` = :id');
-    $query->bindValue(":ore2", $ore2);
-    $query->bindValue(":id", $user['id']);
-    $query->execute();
-    $query = $conn->prepare('UPDATE `factory` SET `ore` = `ore` + :ore WHERE `id` = :id');
-    $query->bindValue(":ore2", $ore2);
-    $query->bindValue(":id", $factory['id']);
-    $query->execute();
-    echo 'Товар загружен<br>';
-    echo 'Перезагрузка через секунду';
-    echo '<meta http-equiv="Refresh" content="1" />';
+if (isset($_POST['del'])) {
+    $factory_del = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory)->fetch();
+    $conn->query("UPDATE `users` SET `money` = `money` + " . $factory_del['budget_money'] . " WHERE `id` = " . $user['id']);
+    $conn->query("UPDATE `store` SET `sum` = `sum` + " . $factory_del['budget_res'] . " WHERE `id` = $user[id] AND `type` = $type");
+    $conn->query("UPDATE `users` SET `work` = 0 WHERE `work` = $factory_del[id] ");
+    $conn->query("DELETE FROM `factory` WHERE `id` = " . $id_factory);
+    echo '<div class="block">Фабрика удалена</div>';
 }
 echo '</div>';
 echo '<div class="a"><a href="factory_viever.php">Назад</a></div>';
