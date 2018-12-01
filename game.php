@@ -25,6 +25,7 @@ echo '<div class="block">
 <div class="a"><a href=goverment>Государства</a></br></div><br>
 <div class="a"><a href=party>Список партий</a></br></div><br>
 <div class="a"><a href=chat/index.php>Чат</a></br></div><br>
+<div class="a"><a href=mail>ЛС</a></br></div><br>
 <div class="a"><a href=articles>Статьи</a></br></div><br>
 <div class="a"><a href=work>Работа</a></br></div><br>
 <div class="a"><a href=store/index.php>Склад</a><br></div><br>
@@ -61,6 +62,7 @@ echo '<div class="a"><a href=users/index.php>О персонаже</a></br></div
 <div class="a"><a href=goverment>Государства</a></br></div>
 <div class="a"><a href=party>Список партий</a></br></div>
 <div class="a"><a href=chat/index.php>Чат</a></br></div>
+<div class="a"><a href=mail>ЛС</a></br></div>
 <div class="a"><a href=articles>Статьи</a></br></div>
 <div class="a"><a href=work>Работа</a></br></div>
 <div class="a"><a href=store/index.php>Склад</a><br></div>
