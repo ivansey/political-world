@@ -3,7 +3,10 @@ if ($_SERVER['REQUEST_URI'] == "/chat/engine.php") return 1;
 
 $user_design = $conn->query("SELECT * FROM `styles` WHERE `id` = '" . $user[style] . "' LIMIT 1")->fetch();
 echo '<link rel="stylesheet" href="' . $user_design["path"] . '" type="text/css">';
-echo "
+if ($noheader == 1) {
+
+} else {
+    echo "
 <div class='block-header'>
      <!--<div class='col xl2 l2 z-depth-5 white hide-on-small-only hide-on-med-only' style='position: fixed; right: 0px; border-radius: 2px;'>-->
                $user[lvl] lvl ($user[exp]/$user[nexp] exp)
@@ -15,20 +18,22 @@ echo "
 </div>
 
 ";
+
 // Update
-$not = $conn->query("SELECT * FROM notifications WHERE user = $user[id] AND readen = 0")->fetch();
-if($not!=''){
-$not_count = $conn->query("SELECT COUNT(*) FROM notifications WHERE user = $user[id] AND readen = 0")->fetchColumn();
-echo "<br><div class='block'><a href=/notifications/>Новые уведомления(+$not_count)</a></div></br>";
-}
+    $not = $conn->query("SELECT * FROM notifications WHERE user = $user[id] AND readen = 0")->fetch();
+    if ($not != '') {
+        $not_count = $conn->query("SELECT COUNT(*) FROM notifications WHERE user = $user[id] AND readen = 0")->fetchColumn();
+        echo "<br><div class='block'><a href=/notifications/>Новые уведомления(+$not_count)</a></div></br>";
+    }
 // Update end
-if ($user['exp'] >= $user['nexp']) {
-    $conn->query("UPDATE users SET lvl = lvl + 1,exp = exp - nexp, nexp = nexp + 1000 WHERE id = $user[id]");
-    echo "
+    if ($user['exp'] >= $user['nexp']) {
+        $conn->query("UPDATE users SET lvl = lvl + 1,exp = exp - nexp, nexp = nexp + 1000 WHERE id = $user[id]");
+        echo "
           <div class='block'>
                Уровень повышен!
           </div>
      ";
+    }
 }
 echo '
 <!doctype html>

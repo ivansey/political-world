@@ -4,7 +4,7 @@ auth();
 banned($user);
 $id_user = $user['id'];
 $rl = $conn->query("SELECT * FROM store WHERE id = '" . $id_user);
-$ml = $conn->query("SELECT * FROM resourse");
+$ml = $conn->query("SELECT * FROM resource");
     echo '
     <div class="block">';
 	while($m = $ml->fetch()) {
