@@ -17,8 +17,6 @@ if ($user['priv'] >= 2) {
 if ($user['priv'] >= 3) {
     echo '
     <div class="block">Супер-дминистраторские утилиты<br>
-    <div class="a"><a href=money.php>Денежные средства</a></div><br>
-	<div class="a"><a href=priv.php>Изменение привелегий[В ПРОЦЕССЕ]</a></div><br>
 	<div class="a"><a href=server_info.php>Информация о сервере[НЕ РАБОТАЕТ]</a></div><br>
 	<div class="a"><a href="log_admin.php">Логи админов</a></div></div><br>';
 }
