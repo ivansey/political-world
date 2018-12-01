@@ -31,10 +31,10 @@ function create_user($id, $name) {
             // Второй этап
             $usero = $conn->query("   SELECT * FROM users WHERE mail = '$id' LIMIT 1")->fetch();
             // Второй этап->Создание склада
-            $ress = $conn->query("SELECT COUNT(*) FROM resourse")->fetch()['COUNT(*)'];
+            $ress = $conn->query("SELECT COUNT(*) FROM resource")->fetch()['COUNT(*)'];
             $i = 0;
             while ($i < $ress) {
-                $res = $conn->query("SELECT * FROM resourse LIMIT " . $i . ",1")->fetch();
+                $res = $conn->query("SELECT * FROM resource LIMIT " . $i . ",1")->fetch();
                 $conn->query("INSERT INTO store SET id = " . $usero['id'] . ", type = " . $res['id']);
                 $i++;
             }
