@@ -61,3 +61,10 @@ a:visited {
     text-align: center;
     font-family: "Palatino Linotype";
 }
+
+.avatar {
+    width: 100%;
+    height: 300px;
+    background-origin: content-box;
+    background-size: cover;
+}
