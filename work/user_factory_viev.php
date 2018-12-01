@@ -113,6 +113,13 @@ if (isset($_POST['edit_salary'])) {
     $query->bindValue(":salary", $salary);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
+    // Notify start
+    $uss = $conn->query("SELECT * FROM users WHERE work = $id_factory");
+   while($usero=$uss->fetch()){
+       $timee= date("H:i:s");
+      notification("Владелец фабрики пересмотрел условия вашей работы. Зарплата ныне составляет $salary R.", $timee, "", $usero);
+        }
+       // Notify end
     echo 'Зарплата изменена<br>';
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
@@ -127,6 +134,13 @@ if (isset($_POST['edit_res'])) {
     $query->bindValue(":res", $res);
     $query->bindValue(":id", $factory['id']);
     $query->execute();
+// Notify start
+ $uss = $conn->query("SELECT * FROM users WHERE work = $id_factory");
+   while($usero=$uss->fetch()){
+       $timee= date("H:i:s");
+      notification("Владелец фабрики пересмотрел условия вашей работы. Процент выдаваемого ресурса ныне равен $res ℅.", $timee, "", $usero);
+        }
+       // Notify end
     echo 'Процент изменён<br>';
     echo 'Перезагрузка через секунду';
     echo '<meta http-equiv="Refresh" content="1" />';
@@ -205,6 +219,13 @@ if (isset($_POST['add_ore'])) {
     echo '<meta http-equiv="Refresh" content="1" />';
 }
 if (isset($_POST['del'])) {
+// Notify start
+ $uss = $conn->query("SELECT * FROM users WHERE work = $id_factory");
+   while($usero=$uss->fetch()){
+       $timee= date("H:i:s");
+      notification("Ваша фабрика была снесена.", $timee, "", $usero);
+        }
+       // Notify end
     $factory_del = $conn->query("SELECT * FROM `factory` WHERE `id` = " . $id_factory)->fetch();
     $conn->query("UPDATE `users` SET `money` = `money` + " . $factory_del['budget_money'] . " WHERE `id` = " . $user['id']);
     $conn->query("UPDATE `store` SET `sum` = `sum` + " . $factory_del['budget_res'] . " WHERE `id` = $user[id] AND `type` = $type");
