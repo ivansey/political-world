@@ -26,11 +26,9 @@ if ($_POST['send_message']) {
     header('Location: index.php');
     exit;
 }
-if (isset($_POST['smile'])) {
-    echo '<div class="block"><iframe width="275" srcdoc="';
-    look_smile();
+    echo '<div class="block"><iframe width="200" srcdoc="';
+    text\smile::smile_look();
     echo '"></iframe></div></div>';
-}
 ?>
     </form>
     <div class="a"><a href=../game.php>На главную</a></div>
