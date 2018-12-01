@@ -8,7 +8,7 @@ echo '
 		<form action="" method="post">
 			Тип ресурсов:<br>
 			<select name="type">';
-$ress = $conn->query("SELECT * FROM `resourse`");
+$ress = $conn->query("SELECT * FROM `resource`");
 while($res=$ress->fetch()){
 echo "<div class='block'> <option value=$res[id]>$res[name]</option>";
 }
@@ -32,6 +32,6 @@ echo "<div class='block'> <option value=$res[id]>$res[name]</option>";
 	echo '<br><div class="block">Предложение отправлено</div><br>';
 }
 //}
-echo '<div class="a"><a href="market.php">Назад</a><br></div>';
+echo '<div class="a"><a href="market.php?id='.$_POST[type].'">Назад</a><br></div>';
 echo '<div class="a"><a href="../game.php">На главную</a></div>';
 ?>

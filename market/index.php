@@ -8,7 +8,7 @@
 include('../system/func.php');
 auth();
 banned($user);
-$resources = $conn->query("SELECT * FROM resourse");
+$resources = $conn->query("SELECT * FROM resource");
 ?>
 <div class="block">
 <?php
