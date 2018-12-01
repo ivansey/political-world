@@ -13,6 +13,10 @@ $query = $conn->prepare('UPDATE `users` SET `party` = NULL, `tag` = :tag WHERE `
 $query->bindValue(":tag", '');
 $query->bindValue(":user", $id);
 $query->execute();
+// Notify start
+$timee = date("H:i:s");
+notification("Вы были изгнаны из партии", $timee, "", $sql);
+// Notify end
 die('<div class="block">Игрок успешно кикнут</div>');
 } else {
 echo '<div class="block">Ошибка</div>';

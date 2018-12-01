@@ -12,7 +12,8 @@ if ($party['id'] == '') {
 $leader = $conn->query("SELECT * FROM `users` WHERE `id` = '" . $party['leader'] . "' LIMIT 1")->fetch();
 $reg = $conn->query("SELECT * FROM `regions` WHERE `id` = '" . $party['reg'] . "' LIMIT 1")->fetch();
 $lname = name($leader);
-echo '<div class="block"> <center>Партия ' . $party['name'] . '<hr>Информация<hr></center>Глава партии: ' . $lname . '</br>Описание партии:' . BBcode::tohtml($party['about']) . '</br>Домашний регион:' . $reg['name'] . '<div class="a"><a href=party_members.php?id=' . $id . '>Участники партии</a></div>';
+$aboutt = text\BBcode::tohtml($party['about'], 1);
+echo '<div class="block"> <center>Партия ' . $party['name'] . '<hr>Информация<hr></center>Глава партии: ' . $lname . '</br>Описание партии:' .$aboutt. '</br>Домашний регион:' . $reg['name'] . '<div class="a"><a href=party_members.php?id=' . $id . '>Участники партии</a></div>';
 if ($user['party'] == $party['id']) {
     echo '<div class="a"> <a href=leave_party.php>Выйти из партии</a></div>';
 }
@@ -21,11 +22,11 @@ if ($user['party'] == 0) {
 }
 
 if ($leader['id'] == $user['id']) {
-    echo '<div class="a">
+    echo '
                 <form action="" method="post">
                     <input type="submit" name="prt" value="Управление">
                 </form>
-      </div></div>
+      </div>
     ';
 
 }
