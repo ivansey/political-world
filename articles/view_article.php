@@ -11,9 +11,9 @@ if ($article[id] == '') {
     die('<div class="block">Статья не найдена<div class="a"><a href="index.php">Назад</a></div></div> ');
 }
 $name = name($author);
+$text = text\smile::tosmile($article['text']);
+$text = text\BBcode::tohtml($text, 1);
 
-$text = BBcode::tohtml($text);
-$text = text_smile($article['text']);
 echo "<div class='block'><hr>$article[title]<br><small>$name</small><br><small>$article[time]</small><hr></div><br>";
 echo "<div class='block'>$text<div class='a'><a href=view_comments.php?id=$id>Показать комментарии</a></div></div><br>";
 if ($user['priv'] > 0) {

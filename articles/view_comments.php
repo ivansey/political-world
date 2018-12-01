@@ -16,7 +16,7 @@ if (($con_num = count($comments)) === 0) {
     foreach ($comments as $comment) {
         $autist = $conn->query("SELECT * FROM users WHERE id = $comment[author_id]")->fetch();
         $name = name($autist);
-        $text = text_smile($comment['text']);
+        $text = text\smile::tosmile($comment['text']);
         echo "<div class='block'>$name<hr>$text";
         if ($user['priv'] > 0) {
             echo '<a href=/delete/delete_comment.php?id=' . $comment[id] . '>[x]</a>';

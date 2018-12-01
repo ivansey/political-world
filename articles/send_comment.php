@@ -29,10 +29,8 @@ echo '
 echo '
 <form method="post"><input name="smile" type="submit" value="Показать смайлы"></div></div></form>
 ';
-if (isset($_POST['smile'])) {
     echo '<div class="block"><iframe width="275" srcdoc="';
-    look_smile();
+    text\smile::smile_look();
     echo '"></iframe></div></div>';
-}
 echo "<br><div class='a'><a href=view_comments.php?id=$id>Назад</a></a>";
 ?>
