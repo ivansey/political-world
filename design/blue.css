@@ -1,4 +1,8 @@
-
+/*
+Создал a-up, a-middle
+Создал block-middle, block-down, block-info-middle, block-info-down
+Создал селектор select, textarea
+ */
 * {
     outline: 0 !important
 }
@@ -7,16 +11,15 @@ body {
     margin: 0 auto;
     text: center;
     max-width: 320px;
-    background-color: RGB(128, 128, 128); /* Фоновая картинка */
+    background-color: #14d6c9; /* Фоновая картинка */
     background-size: cover; /* Растягиваем фон */
     font-size: 14px;
     word-wrap: break-word;
     font-family: "Palatino Linotype";
-
 }
 
 .block {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(66, 228, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 20px 20px 20px 20px;
@@ -25,7 +28,7 @@ body {
 }
 
 .block-up {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(66, 228, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 20px 20px 0px 0px;
@@ -34,7 +37,7 @@ body {
 }
 
 .block-middle {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(66, 228, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 0px 0px 0px 0px;
@@ -43,7 +46,7 @@ body {
 }
 
 .block-down {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(66, 228, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 0px 0px 20px 20px;
@@ -52,7 +55,7 @@ body {
 }
 
 .block-info {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(11, 202, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 20px 20px 20px 20px;
@@ -61,7 +64,7 @@ body {
 }
 
 .block-info-up {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(11, 202, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 20px 20px 0px 0px;
@@ -70,16 +73,16 @@ body {
 }
 
 .block-info-middle {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(11, 202, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
-    padding: 0px; /* Поля вокруг текста */
+    padding: 20px; /* Поля вокруг текста */
     border-radius: 0px 0px 0px 0px;
     text-align: center;
     font-family: "Palatino Linotype";
 }
 
 .block-info-down {
-    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    background: rgb(11, 202, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 0px 0px 20px 20px;
@@ -88,20 +91,21 @@ body {
 }
 
 .block-header {
-    background: rgba(0, 0, 0, 0.35); /* Полупрозрачный фон */
+    background: rgb(66, 228, 255); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     border-radius: 0px 0px 20px 20px;
     margin-bottom: 20px;
     text-align: center;
     font-family: "Palatino Linotype";
+
 }
 
 .a {
     padding: 10px;
     text-align: center;
-    background: #242324;
-    border: 1px solid #1b1b1e;
+    background: #0082fe;
+    border: 2px solid #0060b3;
     border-radius: 20px 20px 20px 20px;
     position: relative;
     text-decoration: none;
@@ -115,8 +119,8 @@ body {
 .a-down {
     padding: 20px;
     text-align: center;
-    background: #242324;
-    border: 1px solid #1b1b1e;
+    background: #0082fe;
+    border: 2px solid #0060b3;
     border-radius: 0px 0px 20px 20px;
     position: relative;
     text-decoration: none;
@@ -128,8 +132,8 @@ body {
 .a-middle {
     padding: 20px;
     text-align: center;
-    background: #242324;
-    border: 1px solid #1b1b1e;
+    background: #0082fe;
+    border: 2px solid #0060b3;
     border-radius: 0px 0px 0px 0px;
     position: relative;
     text-decoration: none;
@@ -141,8 +145,8 @@ body {
 .a-up {
     padding: 20px;
     text-align: center;
-    background: #242324;
-    border: 1px solid #1b1b1e;
+    background: #0082fe;
+    border: 2px solid #0060b3;
     border-radius: 20px 20px 0px 0px;
     position: relative;
     text-decoration: none;
@@ -165,37 +169,45 @@ a:visited {
     text-decoration: none;
 }
 
-textarea {
+input[type=submit] {
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    background: #0082fe;
+    border: 2px solid #0060b3;
+    border-radius: 20px 20px 20px 20px;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
-input[type=submit] {
-    width: 200px;
-    height: 35px;
-    color: #000000;
-    background: rgba(0,0,0,0.50);
-    outline: none;
-    user-select: none;
-    margin-bottom: 5px;
-}
-
 input:hover[type=submit] {
-    background: rgba(0,0,0,0.50);
+    background: #3ebad6;
 }
 
 input:active[type=submit] {
-    background: rgba(0,0,0,0.50);
+    background: #3ebad6;
 }
 
 input[type=text] {
-    width: 100%;
-    background: #bbb5ff;
+    background: #3ebad6;
     color: #000000;
+    width: 100%;
+    border: 0px;
+    border-radius: 20px;
 }
 
 .chat {
 
+}
+
+.chat-fake-frame {
+    width: 400px;
+    height: 100%;
 }
 
 .avatar {
@@ -214,26 +226,15 @@ iframe {
 
 select {
     width: 100%;
-    background: #242324;
+    background: #0082fe;
     border: 0px;
     border-radius: 20px;
 }
 
 textarea {
     width: 100%;
-    background: #242324;
+    background: #0082fe;
     color: #ffffff;
     border: 0px;
     border-radius: 20px;
 }
-
-/*
-RGB(128, 128, 128)-body
-rgba(0, 0, 0, 0.25)-block
-rgba(0, 0, 0, 0.35)-block-header
-242324-a
-1px solid #1b1b1e-a::border
-rgba(0,0,0,0.50)-input::submit
-bbb5ff-input::text
- */
-

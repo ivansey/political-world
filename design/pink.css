@@ -19,6 +19,34 @@ body {
     background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-up {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-middle {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 0px 0px 0px 0px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-down {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 0px 0px 20px 20px;
     text-align: center;
     font-family: "Palatino Linotype";
 }
@@ -27,6 +55,34 @@ body {
     background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-up {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 20px 20px 0px 0px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-middle {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 0px 0px 0px 0px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-down {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 0px 0px 20px 20px;
     text-align: center;
     font-family: "Palatino Linotype";
 }
@@ -35,6 +91,8 @@ body {
     background: rgba(0, 0, 0, 0.35); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
+    border-radius: 0px 0px 20px 20px;
+    margin-bottom: 20px;
     text-align: center;
     font-family: "Palatino Linotype";
 
@@ -45,6 +103,7 @@ body {
     text-align: center;
     background: #71245B;
     border: 1px solid #1b1b1e;
+    border-radius: 20px 20px 20px 20px;
     position: relative;
     text-decoration: none;
     color: #000;
@@ -58,11 +117,37 @@ body {
     padding: 20px;
     text-align: center;
     background: #71245B;
-    border-top: 1px solid #1b1b1e;
-    border-bottom: 1px solid #1b1b1e;
+    border: 1px solid #1b1b1e;
+    border-radius: 0px 0px 20px 20px;
     position: relative;
     text-decoration: none;
-    color: #a9a9ff;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+}
+
+.a-middle {
+    padding: 20px;
+    text-align: center;
+    background: #71245B;
+    border: 1px solid #1b1b1e;
+    border-radius: 0px 0px 0px 0px;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+}
+
+.a-up {
+    padding: 20px;
+    text-align: center;
+    background: #71245B;
+    border: 1px solid #1b1b1e;
+    border-radius: 20px 20px 20px 20px;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
     font-size: 17px;
     font-family: "Palatino Linotype";
 }
@@ -79,16 +164,6 @@ a:active {
 a:visited {
     color: #000;
     text-decoration: none;
-}
-
-input[type=text] {
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-textarea {
-    margin-top: 10px;
-    margin-bottom: 10px;
 }
 
 input[type=submit] {
@@ -110,8 +185,9 @@ input:active[type=submit] {
 }
 
 input[type=text] {
+    width: 100%;
     background: #bbb5ff;
-    color: #ffffff;
+    color: #000000;
 }
 
 .chat {
@@ -123,4 +199,37 @@ input[type=text] {
     height: 300px;
     background-origin: content-box;
     background-size: cover;
+    border-radius: 20px 20px 0px 0px;
 }
+
+iframe {
+    border-radius: 20px 20px 0 0;
+    border: 0px;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    background: #71245B;
+    border: 0px;
+    border-radius: 20px;
+}
+
+textarea {
+    width: 100%;
+    background: #71245B;
+    color: #ffffff;
+    border: 0px;
+    border-radius: 20px;
+}
+
+/*
+D63B5E-body
+rgba(0, 0, 0, 0.25)-block
+rgba(0, 0, 0, 0.35)-block-header
+71245B-a
+1px solid #1b1b1e-a::border
+D63B96-input::submit
+bbb5ff-input::text
+ */
+

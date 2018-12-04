@@ -1,65 +1,189 @@
-body{
-margin: 0 auto;
-text: center;
-max-width: 320px;
-background-color: RGB(128, 128, 128); /* Фоновая картинка */
- background-size: cover; /* Растягиваем фон */
-font-size: 14px;
-font-family: Arial,sans-serif;
-word-wrap: break-word;
-}
-   .block {
-    background: rgba(0,0,0,0.6); /* Полупрозрачный фон */
-    color: #fff; /* Цвет текста */
-    padding: 20px; /* Поля вокруг текста */
-    text-align: center;
-   }
-   .a{
-padding: 20px ;
-text-align: center;
-background: #242324;
-border-top: 1px solid #1b1b1e;
-border-bottom: 1px solid #1b1b1e;
-position: relative;
-text-decoration: none;
-color:#ffffff;
+
+* {
+    outline: 0 !important
 }
 
- .a-down{
-padding: 20px ;
-text-align: center;
-background: #242324;
-border-top: 1px solid #1b1b1e;
-border-bottom: 1px solid #1b1b1e;
-position: relative;
-text-decoration: none;
-color:#ffffff;
+body {
+    margin: 0 auto;
+    text: center;
+    max-width: 320px;
+    background-color: RGB(128, 128, 128); /* Фоновая картинка */
+    background-size: cover; /* Растягиваем фон */
+    font-size: 14px;
+    word-wrap: break-word;
+    font-family: "Palatino Linotype";
+
 }
-.block-header {
-    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
+
+.block {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
     color: #fff; /* Цвет текста */
     padding: 20px; /* Поля вокруг текста */
     text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-up {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-middle {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-down {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    border-radius: 20px 20px 20px 20px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-up {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-middle {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 0px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-info-down {
+    background: rgba(0, 0, 0, 0.25); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.block-header {
+    background: rgba(0, 0, 0, 0.35); /* Полупрозрачный фон */
+    color: #fff; /* Цвет текста */
+    padding: 20px; /* Поля вокруг текста */
+    margin-bottom: 20px;
+    text-align: center;
+    font-family: "Palatino Linotype";
+}
+
+.a {
+    padding: 10px;
+    text-align: center;
+    background: #242324;
+    border: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.a-down {
+    padding: 20px;
+    text-align: center;
+    background: #242324;
+    border: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+}
+
+.a-middle {
+    padding: 20px;
+    text-align: center;
+    background: #242324;
+    border: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
+    font-family: "Palatino Linotype";
+}
+
+.a-up {
+    padding: 20px;
+    text-align: center;
+    background: #242324;
+    border: 1px solid #1b1b1e;
+    position: relative;
+    text-decoration: none;
+    color: #000000;
+    font-size: 17px;
     font-family: "Palatino Linotype";
 }
 
 a {
-    color: #bbb5ff;
+    color: #000;
+    text-decoration: none;
 }
 
 a:active {
-    color: #bbb5ff;
+    color: #000;
 }
 
 a:visited {
-    color: #bbb5ff;
+    color: #000;
+    text-decoration: none;
 }
-.block-info {
-    background: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-    color: #fff; /* Цвет текста */
-    padding: 20px; /* Поля вокруг текста */
-    text-align: center;
-    font-family: "Palatino Linotype";
+
+textarea {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type=submit] {
+    width: 200px;
+    height: 35px;
+    color: #000000;
+    background: rgba(0,0,0,0.50);
+    outline: none;
+    user-select: none;
+    margin-bottom: 5px;
+}
+
+input:hover[type=submit] {
+    background: rgba(0,0,0,0.50);
+}
+
+input:active[type=submit] {
+    background: rgba(0,0,0,0.50);
+}
+
+input[type=text] {
+    width: 100%;
+    background: #bbb5ff;
+    color: #000000;
+}
+
+.chat {
+
 }
 
 .avatar {
@@ -67,4 +191,22 @@ a:visited {
     height: 300px;
     background-origin: content-box;
     background-size: cover;
+}
+
+iframe {
+    border: 0px;
+    width: 100%;
+}
+
+select {
+    width: 100%;
+    background: #242324;
+    border: 0px;
+}
+
+textarea {
+    width: 100%;
+    background: #242324;
+    color: #ffffff;
+    border: 0px;
 }
