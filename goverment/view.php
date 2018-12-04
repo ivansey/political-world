@@ -13,14 +13,13 @@ $id = _num(_string($_GET['id']));
 
 $goverments = $conn->query("SELECT COUNT(*) FROM `goverment` WHERE `id` = " . $id . " ")->fetch()['COUNT(*)'];
 if ($goverments == 0) {
-    die('<div class="block">Региона нет</div>');
+    die('<div class="block-up">Региона нет</div>');
 }
 //$goverment = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $id . " ")->fetch();
 
 
 $info = new goverment\info($id);
 $gover_info = $info->info();
-
 
 
 $king_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $gover_info['leader'] . " ")->fetch();
@@ -32,20 +31,18 @@ if ($gover_info['type'] == 0) {
 }
 
 echo '
-    <div class="block">
+    <div class="block-up">
     <div class="block-info">
-        Название: ' . $gover_info['name'] .  ' <br>
+        Название: ' . $gover_info['name'] . ' <br>
         Глава: ' . idtoname($gover_info['leader']) . ' <br>
-        Столица: <a href="../regions/viev.php?id=' . $region['id'] . '">' . $region['name'] .  '</a> <br>
+        Столица: <a href="../regions/viev.php?id=' . $region['id'] . '">' . $region['name'] . '</a> <br>
         Строй: ' . $type . ' <br>
     </div>
 ';
-if ($user['gover'] !=  $id) {
+if ($user['gover'] != $id) {
     echo '
             <form action="" method="post">
-                <div class="a">
                     <input type="submit" name="fly" value="Получить гражданство">
-                </div>
             </form>
     ';
 }
@@ -53,17 +50,18 @@ $party_reg = $conn->query("SELECT * FROM `party` WHERE `id` = " . $user['party']
 if ($party_reg['reg'] == $gover_info['pri_reg'] AND $party_reg['gover'] != $id) {
     echo '
             <form action="" method="post">
-                <div class="a">
                     <input type="submit" name="party_plus" value="Участвовать в политике государства">
-                </div>
             </form><br>
     ';
 }
-if ($king_sql['king_id'] == $user['id']) {
+
+$parl_sql = $conn->query("select count(*) from parlament where gover = " . $id)->fetch()['count(*)'];
+if ($gover_info['leader'] == $user['id'] AND $parl_sql == 0) {
     echo '<div class="a"><a href="create_parlament.php?id=' . $id . '">Создать парламент</a></div>';
+} elseif ($parl_sql == 1) {
+    echo '<div class="a"><a href="/parliament/index.php?id=' . $id . '">Парламент</a></div>';
+    echo '<div class="a"><a href="elections/index.php?id=' . $id . '">Выборы</a></div>';
 }
-echo '<div class="a"><a href="/parliament/index.php?id=' . $id . '">Парламент</a></div>';
-echo '<div class="a"><a href="elections/index.php?id=' . $id . '">Выборы</a></div>';
 if ($_POST['party_plus']) {
     $conn->query("UPDATE `party` SET `gover` = " . $gover_info['id'] . " WHERE `id` = " . $user['party'] . " ");
     echo '<div class="block-info">Ваша партия участует в политической жизни государства</div>';
@@ -71,7 +69,7 @@ if ($_POST['party_plus']) {
 
 if (isset($_POST['fly'])) {
     $conn->query("UPDATE `users` SET `gover` = " . $id . " WHERE `id` = " . $user['id'] . " ");
-    header('Location: ?id='.$id.'');
+    header('Location: ?id=' . $id . '');
 }
 /*
  if ($user['priv'] > 2) {

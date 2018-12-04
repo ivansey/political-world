@@ -9,17 +9,17 @@ $parliament = $conn->query("SELECT * FROM `parlament` WHERE `gover` = " . $id)->
 $gover = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $id)->fetch();
 
 if ($parliament_sql == 0) {
-    echo '<div class="block">Парламента не существует<div class="a-down"><a href="../game.php">На главную</a> </div> </div>';
+    echo '<div class="block-up">Парламента не существует</div><div class="a-down"><a href="../game.php">На главную</a></div>';
     exit;
 }
 
-echo '<div class="block"><div class="block-info">Парламент государства ' . $gover['name'];
+echo '<div class="block-up"><div class="block-info-up">Парламент государства ' . $gover['name'];
 $i = 1;
 //echo $parliament['sum'];
 while ($i <= $parliament['sum']) {
     $users = $conn->query("SELECT * FROM `users` WHERE `id` = " . $parliament[$i])->fetch();
     if ($users['id'] == 0) {
-        echo '<div class="block-info">Кресло пустое</div><br>';
+        echo '<div class="a">Кресло пустое</div>';
     } else {
         echo '<div class="a">' . name($users) . '</div>';
     }
@@ -32,10 +32,11 @@ while ($i < 15 AND $user['id'] != $parliament[$i]) {
     }
     $i++;
 }
+echo '</div>';
 //
 if ($parliament_user = 1) {
-    echo '<div class="a"><a href="create_law.php?id=' . $id . '">Издать закон</a></div>';
-    echo '<div class="a"><a href="laws.php?type=law_vote&id=' . $id . '">Голосовать за закон</a></div>';
+    echo '<div class="a-middle"><a href="create_law.php?id=' . $id . '">Издать закон</a></div>';
+    echo '<div class="a-down"><a href="laws.php?type=law_vote&id=' . $id . '">Голосовать за закон</a></div>';
 }
-echo '</div></div>';
+echo '</div>';
 echo '<div class="a-down"><a href="/goverment/view.php?id=' . $id . '">Назад</a></div>';

@@ -8,13 +8,13 @@
 include('../system/func.php');
 auth();
 banned($user);
-$resources = $conn->query("SELECT * FROM resource");
+$resources = $conn->query("SELECT * FROM resourse");
 ?>
-<div class="block">
+<div class="block-up">
 <?php
 while($res=$resources->fetch()) {
 echo "<div class='a'><a href=market.php?id=$res[id]>Искать $res[name]</a></div>";
 }
 ?>
 </div>
-<div class="a"><a href="../game.php">На главную</a></div>
+<div class="a-down"><a href="../game.php">На главную</a></div>

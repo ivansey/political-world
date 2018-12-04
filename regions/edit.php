@@ -6,12 +6,11 @@ su_auth($user);
 $id = _num(_string($_GET['id']));
 
 echo '
-    <div class="block">
+    <div class="block-up">
     <div class="block-info">
         <form action="" method="post">
             Имя региона
-            <input type="text" name="name"></div>
-            <div class="a">
+            <input type="text" name="name">
                 <input type="submit" name="name_edit" value="Изменить">
             </div>
         </form>
@@ -24,6 +23,6 @@ if (isset($_POST['name_edit'])) {
     $query->bindValue(":name", $name);
     $query->bindValue(":id", $id);
     $query->execute();
-    echo '<div class="block">Регион изменён</div>';
+    echo '<div class="block-middle">Регион изменён</div>';
 }
-echo '<div class="a-down"><a href="viev.php?id=' . $id . '">Назад</a></div>';
+echo '</div><div class="a-down"><a href="viev.php?id=' . $id . '">Назад</a>';

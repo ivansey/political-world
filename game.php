@@ -42,20 +42,20 @@ echo '<div class="block">
 </body>
 ';
     //Стиль New Dark
-} elseif ($user['style'] == 2) {
+} else {
     echo '
 <html>
 <head>
     <title>Главная</title>
 </head>
 <body>
-<div class="block">
+<div class="block-up">
 <div class="block-info">
 Регион нахождения<br>
 <a href=regions/viev.php?id=' . $region_user['id'] . '>' . $region_user['name'] . '</a></br></div><br>';
 if ($user['party'] != 0) {
         $party = $conn->query("SELECT * FROM party WHERE id = " . $user['party'])->fetch();
-        echo '<div class="block-info"> ' . $party['name'] . ' </div><div class="a-down"><a href=party/party_view.php?id=' . $user['party'] . '>Моя партия</a></div><br>';
+        echo '<div class="block-info-up"> ' . $party['name'] . ' </div><div class="a-down"><a href=party/party_view.php?id=' . $user['party'] . '>Моя партия</a></div><br>';
     }
 echo '<div class="a"><a href=users/index.php>О персонаже</a></br></div>
 <div class="a"><a href=regions>Регионы</a></br></div>

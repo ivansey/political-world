@@ -2,7 +2,7 @@
 include('../system/func.php');
 auth();
 banned($user);
-echo '<div class="block">';
+echo '<div class="block-up">';
 $work = $user['work'];
 $factory = $conn->query("SELECT * FROM `factory` WHERE `id` = '" . $work . "'")->fetch();
 $exp = $conn->query("SELECT * FROM `parametr` WHERE `type` = '0'")->fetch();
@@ -10,13 +10,13 @@ $material_income = $conn->query("SELECT * FROM `parametr` WHERE `type` = $factor
 $type = $factory['type'];
 
 if ($work == 0) {
-    echo 'Вы не работаете';
+    echo '<div class="block-info>Вы не работаете</div>';
 } else {
     if ($user['energy'] <= 0) {
-        die('Не хватает энергии');
+        die('<div class="block-info>Не хватает энергии</div>');
     }
     if ($factory['budget_money'] < $factory['salary_money']) {
-        die('Фабрика не сможет выдать зарплату');
+        die('<div class="block-info>Фабрика не сможет выдать зарплату</div>');
     }
 }
     $res = $factory['salary_res'];
@@ -36,10 +36,10 @@ $query = $conn->prepare('INSERT `store` SET `type` = :type, `id` = :id, `sum`= 0
  $conn->query("UPDATE `store` SET `sum` = `sum` + $mater WHERE `id` = $user[id] AND `type` = $type");
 }
 //
-    echo 'Получено денег: ' . $factory['salary_money'] . ', опыта: ' . $exp['value'] . ', материалов: ' . $mater;
-    echo '<br><div class="a"><a href="worker.php">Повторно</a></div>';
+    echo '<div class="block-info">Получено денег: ' . $factory['salary_money'] . ', опыта: ' . $exp['value'] . ', материалов: ' . $mater . '</div>';
+    echo '</div><div class="a-middle"><a href="worker.php">Повторно</a>';
 echo '</div>';
-echo '<br><div class="a"><a href="index.php">Назад</a></div>';
-echo '<div class="a"><a href="../game.php">В главное меню</a></div>';
+echo '<div class="a-middle"><a href="index.php">Назад</a></div>';
+echo '<div class="a-down"><a href="../game.php">В главное меню</a></div>';
 
 ?>

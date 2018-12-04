@@ -10,22 +10,35 @@ auth();
 banned($user);
 
 
-echo '<div class="a-down"><a href="../game.php">Главная</a></div><br>';
+
+echo '<div class="a-up"><a href="../game.php">Главная</a></div>';
 if($user[priv] > 2) {
-    echo '<div class="a-down"><a href="add.php">Создать регион</a></div>';
+    echo '<div class="a-middle"><a href="add.php">Создать регион</a></div>';
 }
-//echo '<br>';
-echo '<div class="block">';
-/*$i=0;
-$sum = $conn->query("SELECT COUNT(*) FROM `regions`")->fetch()['COUNT(*)'];
-while ($i <= $sum) {
-    $reg = $conn->query("SELECT * FROM `regions` LIMIT " . $i . ",1")->fetch();
-    echo '<div class="a"><a href="viev.php?id=' . $reg['id'] . '>' . $reg['name'] . '</a></div>';
-    $i++;
-}*/
-$regions = $conn->query("SELECT * FROM `regions`");
+
+echo '<div class="block-middle">';
+
+echo '
+    <div class="block-info">
+        <form action="" method="post">
+            Поиск региона<br>
+            <input type="text" name="party"><br>
+            <input type="submit" name="search" value="Поиск">
+        </form>
+    </div><br>
+';
+if (isset($_POST['search'])) {
+    $regions = $conn->query("SELECT * FROM `regions` WHERE `name` LIKE '%" . $_POST['party'] . "%' ");
+}else{
+    $regions = $conn->query("SELECT * FROM `regions`");
+}
+
+//$regions = $conn->query("SELECT * FROM `regions`");
+echo '<div class="block-info">';
 while($region=$regions->fetch()){
     echo '<div class="a"><a href="viev.php?id=' . $region['id'] . '">' . $region['name'] . '</a></div>';
 }
 echo '</div>';
+echo '</div>';
 
+echo '<div class="a-down"><a href="../game.php">Главная</a></div>';

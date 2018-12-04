@@ -8,19 +8,18 @@
 include "../system/func.php";
 auth();
 banned($user);
-echo '<div class="a-down"><a href="index.php">Назад</a></div>';
-echo '<div class="a-down"><a href="../game.php">На главную</a></div>';
+echo '<div class="a-up"><a href="index.php">Назад</a></div>';
+echo '<div class="a-middle"><a href="../game.php">На главную</a></div>';
 $id = _num(_string($_GET['id']));
-echo '<div class="block"><div class="block-info">';
+echo '<div class="block-middle"><div class="block-info-up">';
 $i = 0;
 echo '<iframe width="240" height="600" src="engine.php?id=' . $id . '#down"></iframe>';
 echo '
 </div>
-<div class="block-info">
+<div class="block-info-down">
 <form action="" method="post">
 <input type="text" name="text">
 <input type="submit" name="send" value="Отправить">
-<input type="submit" name="send" value="Показать смайлы">
 </form>
 </div>
 </div>
@@ -41,8 +40,8 @@ notification("Новое сообщение!", $timee, "http://v92707.hosted-by-
 // Notify end
     header ("Location: mail.php?id=" . $id);
 }
-echo '<div class="block"><iframe width="200" srcdoc="';
+echo '<div class="block-middle"><iframe width="200" srcdoc="';
 text\smile::smile_look();
 echo '"></iframe></div></div>';
-echo '<div class="a-down"><a href="index.php">Назад</a></div>';
+echo '<div class="a-middle"><a href="index.php">Назад</a></div>';
 echo '<div class="a-down"><a href="../game.php">На главную</a></div>';

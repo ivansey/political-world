@@ -1,4 +1,11 @@
 {
     "name": "root/public_html",
-    "require": {}
+    "require": {},
+    "autoload": {
+        "psr4": {
+            "text\\": "system/class",
+            "system\\laws\\": "system/class",
+            "goverment\\": "system/class"
+        }
+    }
 }

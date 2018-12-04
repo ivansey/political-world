@@ -18,15 +18,15 @@ $money = $anek['money'];
 $gold = $anek['gold'];
 $about = $anek['about'];
 $id_user = $anek['id'];
-echo '<div class="block">';
+echo '<div class="block-up">';
 if ($name == '') {
     echo 'Данный игрок не существует';
 } else {
     if ($id == $user['id'] or $id == 0) {
 
         echo '<div class="avatar" style="background-image: url(' . $user['avatar'] . ')"></div>';
-        echo '<div class="block-info">';
-        echo 'id: ' . $id_user . '<br>EMAIL: ' . $email . '<br>Имя: ' . $name . ' - ' . $user[lvl] . ' lvl(' . $user[exp] . '/' . $user[nexp] . ')</br>';
+        echo '<div class="block-info-down">';
+        echo 'id: ' . $id_user . '<br>EMAIL: ' . $email . '<br>Имя: ' . $name . ' <br> ' . $user[lvl] . ' lvl(' . $user[exp] . '/' . $user[nexp] . ')</br>';
         if ($about == '') {
         } else {
             echo 'О себе: ' . text\BBcode::tohtml($about, 1) . '</br>';
@@ -34,16 +34,16 @@ if ($name == '') {
         echo '' . $money . ' RUB<br>' . $gold . ' SCR';
         echo '<br>Дата регистрации:  ' . $user["date_reg"];
         echo '</div>';
-        echo '</div><div class="block"><div class="a"><a href=edit.php>Редактировать данные</a></div><div class="a"> <a href="../setting/index.php">Настройки</a><br></div></div>';
+        echo '</div><div class="block-middle"><div class="a"><a href=edit.php>Редактировать данные</a></div><div class="a"> <a href="../setting/index.php">Настройки</a><br></div></div>';
     } else {
         echo '<div class="avatar" style="background-image: url(' . $anek['avatar'] . ')"></div>';
-        echo 'Имя: ' . $name . ' - ' . $anek[lvl] . ' lvl(' . $anek[exp] . '/' . $anek[nexp] . ')</br>';
+        echo '<div class="block-info-down">Имя: ' . $name . ' <br> ' . $anek[lvl] . ' lvl(' . $anek[exp] . '/' . $anek[nexp] . ')</br>';
         if ($about == '') {
         } else {
             echo 'О себе: ' . text\BBcode::tohtml($about, 1) . '</br> ';
         }
-        echo '</div>';
-        echo '<div class="a-down"><a href="/mail/mail.php?id=' . $id . '">Открыть сообщения</a></div>';
+        echo '</div></div>';
+        echo '<div class="a-middle"><a href="/mail/mail.php?id=' . $id . '">Открыть сообщения</a></div>';
     }
 
 }

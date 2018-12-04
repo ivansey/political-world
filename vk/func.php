@@ -11,11 +11,16 @@ function get_login($id, $token) {
 
     return $login;
 }
-
+function get_image($id, $token) {
+$url = 'https://api.vk.com/method/users.get?user_id=' . $id . '&v=5.52&access_token=' . $token . '&fields=photo_50';
+    $result = file_get_contents($url);
+    $result = json_decode($result, true);
+    $image = $result['response'][0]['photo_50'];
+    return $image;
+}
 function create_user($id, $name) {
     try {
         global $conn;
-
         $sql = $conn->query("SELECT COUNT(*) FROM vk_users WHERE vk_id=$id")->fetch()['COUNT(*)'];
         if ($sql == 0) {
             // Раз
@@ -29,16 +34,16 @@ function create_user($id, $name) {
             $query->bindValue(":date_reg", $date_reg);
             $query->execute();
             // Второй этап
-            $usero = $conn->query("   SELECT * FROM users WHERE mail = '$id' LIMIT 1")->fetch();
+            $usero = $conn->query("SELECT * FROM users WHERE mail = '$id' LIMIT 1")->fetch();
             // Второй этап->Создание склада
-            $ress = $conn->query("SELECT COUNT(*) FROM resource")->fetch()['COUNT(*)'];
+            $ress = $conn->query("SELECT COUNT(*) FROM resourse")->fetch()['COUNT(*)'];
             $i = 0;
             while ($i < $ress) {
-                $res = $conn->query("SELECT * FROM resource LIMIT " . $i . ",1")->fetch();
+                $res = $conn->query("SELECT * FROM resourse LIMIT " . $i . ",1")->fetch();
                 $conn->query("INSERT INTO store SET id = " . $usero['id'] . ", type = " . $res['id']);
                 $i++;
             }
-            $query = $conn->query("INSERT INTO vk_users SET vk_id = $id, user_id = $usero[id]");
+            $conn->query("INSERT INTO vk_users SET vk_id = $id, user_id = $usero[id]");
             // Три
             setcookie("email", $id, time()+60*60*24, "/");
             setcookie("password", $pass, time()+60*60*24, "/");

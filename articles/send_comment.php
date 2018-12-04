@@ -8,29 +8,28 @@ $id = _string(_num($_GET['id']));
 $article = $conn->query("SELECT * FROM articles WHERE id = $id LIMIT 1")->fetch();
 
 if ($article['id'] == '')
-    die('<div class="block">Статья не найдена<div class="a"><a href="index.php">Назад</a></div></div> ');
+    die('<div class="block-up">Статья не найдена<div class="a"><a href="index.php">Назад</a></div></div> ');
 
-echo "<div class='block'>
+echo "<div class='block-up'>
     <form action='chandler.php' method='post'>";
 ?>
-        <center>
             Текст коментария:<br>
             <input name="text" type="text" size="20"><br>
 <?php
 echo '
-<input type="hidden" name="id" value="'.$id.'"></div>';
+<input type="hidden" name="id" value="'.$id.'">';
 ?>
-            <div class="a"><input name="submit" type="submit" valve="Отправить">
+<input name="submit" type="submit" valve="Отправить">
 
-        </center>
+
     </form>
 
 <?
 echo '
-<form method="post"><input name="smile" type="submit" value="Показать смайлы"></div></div></form>
+
 ';
-    echo '<div class="block"><iframe width="275" srcdoc="';
+    echo '<iframe width="275" srcdoc="';
     text\smile::smile_look();
     echo '"></iframe></div></div>';
-echo "<br><div class='a'><a href=view_comments.php?id=$id>Назад</a></a>";
+echo "</div></div><div class='a-down'><a href=view_comments.php?id=$id>Назад</a></a>";
 ?>

@@ -11,15 +11,13 @@ su_auth($user);
 banned($user);
 
 echo '
-    <div class="block">
+    <div class="block-up">
     <div class="block-info">
         Создание региона<br>
             <form action="handler.php" method="post">
-                <input type="text" name="name"></div>
-                <div class="a">
-                <input type="submit" name="create" value="Создать">
+                <input type="text" name="name">
+                <input type="submit" name="create" value="Создать"></div>
             </form>
-        </div>
-    </div>
+    </div></div>
 ';
-echo '<div class="a-down"><a href="index.php">Назад</a></div>';
+echo '<div class="a-down"><a href="index.php">Назад</a>';

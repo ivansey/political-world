@@ -1,5 +1,5 @@
 <?php
-include "../system/func.php";
+include "../func.php";
 echo 'echo';
 $conn->query("UPDATE `goverment` SET `elec_lead` = 1");
 $conn->query("UPDATE `users` SET `vote` = 0");

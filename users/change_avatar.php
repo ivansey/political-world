@@ -8,4 +8,4 @@
 include '../system/func.php';
 
 $conn->query("update users set avatar = '" . $_POST['url'] . "' where id = " . $user['id']);
-echo '<div class="block">Аватар вставлен</div><div class="a-down"><a href="index.php">Назад</a></div>';
+echo '<div class="block-up">Аватар вставлен</div><div class="a-down"><a href="index.php">Назад</a></div>';

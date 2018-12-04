@@ -9,7 +9,7 @@ $id_user = $conn->query("SELECT * FROM `users` WHERE `id` = '" . $factory['leade
 $nnn = name($id_user);
 $ftype = $conn->query("SELECT * FROM `factory_types` WHERE `res` = '" . $factory['type'] . "'")->fetch();
 echo '
-	<div class="block">
+	<div class="block-up">
 ';
 if($work == 0) {
 	echo '
@@ -35,20 +35,20 @@ if($work == 0) {
     echo $nnn;
     echo '<br>
 		<form action="worker.php" method="post">
-			<br><div class="a"><input type="submit" name="work" value="Работать"></div>
+			<br><input type="submit" name="work" value="Работать">
 		</form>  
 		<form action="" method="post">
-			<div class="a"><input type="submit" name="del" value="Уволиться"></div>
+	        <input type="submit" name="del" value="Уволиться">
 		</form>
 	';
 	if(isset($_POST['del'])) {
 		$conn->query("UPDATE users SET work = 0 WHERE id = " . $user['id'] . " ");
-		echo '<div class="block">Вы уволены</div><br>';
+		echo '<div class="block-up">Вы уволены</div><br>';
 	}
 }
 echo '
 		<form action="create_factory.php" method="post">
-		<div class="a"><input type="submit" name="create" value="Создание фабрики"></div>
+		<input type="submit" name="create" value="Создание фабрики">
 		</form>
 	';
 $factory_sql = $conn->query("SELECT COUNT(*) FROM `factory` WHERE `leader` = '" . $user['id'] . "'")->fetch()['COUNT(*)'];
@@ -56,10 +56,10 @@ $factory_sql2 = $conn->query("SELECT * FROM `factory` WHERE `leader` = '" . $use
 if($factory_sql > 0) {
 	echo '
 		<form action="factory_viever.php" method="post">
-		<div class="a"><input type="submit" name="create" value="Управление фабриками"></div>
+		<input type="submit" name="create" value="Управление фабриками">
 		<br>
 		</form>
 	';
 }
-echo '<div class="a"><a href="../game.php">На главную</a></div>';
+echo '</div><div class="a-down"><a href="../game.php">На главную</a></div>';
 ?>

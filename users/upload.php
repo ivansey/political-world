@@ -7,14 +7,14 @@
  */
 include '../system/func.php';
 if ($_FILES['filename']['size'] > 1024 * 3 * 1024) {
-    echo '<div class="block">Файл слишком большой</div>';
+    echo '<div class="block-up">Файл слишком большой</div>';
     exit;
 }
 
 if (is_uploaded_file($_FILES['filename']['tmp_name'])) {
     move_uploaded_file($_FILES['filename']['tmp_name'], "../resource/users/avatars/" . $user['id'] . ".jpeg");
 } else {
-    echo '<div class="block">Ошибка</div>';
+    echo '<div class="block-up">Ошибка</div>';
 }
 
 $conn->query("update users set avatar = '/resource/users/avatars/" . $user['id'] . ".jpeg' where id = " . $user['id']);

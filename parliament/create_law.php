@@ -19,17 +19,19 @@ if ($parliament_sql == 0) {
 }
 
 echo '
-<div class="block">
-<form action="handler.php" method="post">
-Создание парламента<br>
-<input type="hidden" name="gover_id" value="' . $id . '">
-<select size="3" name="type">
-<option disabled>Изменение данных государства</option>
-<option value="change_name">Изменение названия государства</option>
-<option value="change_priv_leader">Изменение привелегий для лидера государства</option>
-</select>
-<input type="submit" name="submit" value="Издать">
-</form>
+<div class="block-up">
+    <form action="handler.php" method="post">
+        <div class="block-info">
+            Создание парламента<br>
+                <input type="hidden" name="gover_id" value="' . $id . '">
+                <select name="type">
+                    <option disabled>Изменение данных государства</option>
+                    <option value="change_name">Изменение названия государства</option>
+                    <option value="change_priv_leader">Изменение привелегий для лидера государства</option>
+                </select>
+            <input type="submit" name="submit" value="Издать">
+        </div>
+    </form>
 </div>
-<div class="a-down"><a href="index.php?id=' . $id . '">На главную</a> </div>
+<div class="a-down"><a href="index.php?id=' . $id . '">На главную</a></div>
 ';

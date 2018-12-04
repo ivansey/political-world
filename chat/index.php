@@ -4,13 +4,13 @@ auth();
 banned($user);
 banned_chat($user);
 ?>
-    <div class="block">
+    <div class="block-up">
         <iframe name="chat" id="chat" height="500" width="275" src="engine.php#down"></iframe>
-        <br>
         <form action="" method="post" target="">
-            <div class="a"><input type="text" name="message" size="25"><br><br>
+            <div class="block-info-down">
+                <input type="text" name="message" size="25">
                 <input type="submit" name="send_message" value="Отправить">
-                <input type="submit" name="smile" value="Показать смайлы"></div>
+            </div>
     </div>
 <?php
 $name = name($user);
@@ -26,15 +26,15 @@ if ($_POST['send_message']) {
     header('Location: index.php');
     exit;
 }
-    echo '<div class="block"><iframe width="200" srcdoc="';
-    text\smile::smile_look();
-    echo '"></iframe></div></div>';
+echo '<div class="block-middle"><iframe width="200" srcdoc="';
+text\smile::smile_look();
+echo '"></iframe></div></div>';
 ?>
     </form>
-    <div class="a"><a href=../game.php>На главную</a></div>
+    <div class="a-middle"><a href=../game.php>На главную</a></div>
 <?php
 //Проверка уровня админа и вывод кнопок
 if ($user['priv'] >= 1) {
-    echo("<div class='a'><a href=../admin/chat.php>Управление чатом</a></div>");
+    echo("<div class='a-down'><a href=../admin/chat.php>Управление чатом</a></div>");
 }
 ?>

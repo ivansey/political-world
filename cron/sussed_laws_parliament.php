@@ -5,7 +5,7 @@
  * Date: 27.11.18
  * Time: 21:56
  */
-include '../func.php';
+include '../system/func.php';
 //include '../system/class/laws.php';
 //__class();
 

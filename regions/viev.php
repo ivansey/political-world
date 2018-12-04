@@ -13,29 +13,27 @@ $id = _num(_string($_GET['id']));
 
 $regions = $conn->query("SELECT COUNT(*) FROM `regions` WHERE `id` = " . $id . " ")->fetch()['COUNT(*)'];
 if ($regions == 0) {
-    die('<div class="block">Региона нет</div>');
+    die('<div class="block-up">Региона нет</div>');
 }
 $region = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $id . " ")->fetch();
 $gover = $conn->query("SELECT * FROM `goverment` WHERE `id` = " . $region['gover'] . " ")->fetch();
 $guber_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $region['guber'] . " ")->fetch();
 $guber = name($guber_sql);
 echo '
-    <div class="block">
+    <div class="block-up">
         <div class="block-info">
         Название: ' . $region['name'] . ' <br><br>
         Государство: <a href="../goverment/view.php?id=' . $gover['id'] . '">' . $gover['name'] . '</a>
         </div>
         <br><div class="block-info">
-        Губернатор: ' . $guber . ' <br><br>
+        Губернатор: ' . $guber . '
         </div><br>
     
 ';
 if ($user['region'] != $id) {
     echo '
             <form action="" method="post">
-                <div class="a">
                     <input type="submit" name="fly" value="Перелёт">
-                </div>
             </form>
     ';
 }
