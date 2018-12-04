@@ -7,7 +7,7 @@ banned_chat($user);
 
 $user_design = $conn->query("SELECT * FROM `styles` WHERE `id` = '" . $user[style] . "' LIMIT 1")->fetch();
 echo '<link rel="stylesheet" href="' . $user_design["path"] . '" type="text/css">';
-echo '<div class="chat">';
+echo '<div class="chat" id="chat">';
 $messages = $conn->query("SELECT * FROM `chat`");
 while($message=$messages->fetch()){
     $time = date("H:i", strtotime($message['time']));

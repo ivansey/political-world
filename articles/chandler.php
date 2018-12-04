@@ -14,7 +14,7 @@ $auth = $conn->query("SELECT * FROM articles WHERE id = $ai")->fetch();
 if($auth[author_id] != $user[id]) {
 $aaa = $conn->query("SELECT * FROM users WHERE id = $auth[author_id]")->fetch();
 $timee = date("H:i:s");
-notification("Новый комментарий к вашей статье!", $timee, "http://v92707.hosted-by-vdsina.ru/articles/view_comments.php?id=$ai", $aaa);
+notification("Новый комментарий к вашей статье!", $timee, "articles/view_comments.php?id=$ai", $aaa);
 }
 // Notify end
 die("<div class='block'>Комментарий успешно создан<div class='a'> <a href=view_comments.php?id=$_POST[id]>В комментарии</a></div></div>");
