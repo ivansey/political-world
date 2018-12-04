@@ -12,7 +12,7 @@ echo '
 if ($user['priv'] >= 2) {
     echo '
     <div class="block">Администраторские утилиты<br>
-	<div class="a"><a href=info.php>Редактирование информации об игроках[НЕ РАБОТАЕТ]</a></div></div><br>';
+	<div class="a"><a href=edit_uzver.php>Редактирование информации об игроках</a></div></div><br>';
 }
 if ($user['priv'] >= 3) {
     echo '
