@@ -35,7 +35,7 @@ $message = htmlentities($message);
 if ($_POST['send_message']) {
     $query = $conn->prepare('INSERT INTO `chat` SET `text` = :message, `name` = :name, `time` = TIME_FORMAT(:date, "%H:%i") ');
     $query->bindValue(":message", $message);
-    $query->bindValue(":name", $name);
+    $query->bindValue(":name", $user['id']);
     $query->bindValue(":date", $date);
     $query->execute();
     header('Location: index.php');
