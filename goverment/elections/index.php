@@ -52,4 +52,4 @@ echo '</div>';
 } elseif ($par == 0 AND $lead == 0){
     echo '<div class="block-up">Никаких выборов не проводится</div>';
 }
-echo '<div class="a-down"><a href="../view.php?id=' . $id . '">Назад</a></div>';
+echo '<div class="a-down"><a onclick="history.back()">Назад</a></div>';
