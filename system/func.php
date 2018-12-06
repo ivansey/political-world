@@ -2,10 +2,12 @@
 require_once('db_connect.php');
 
 //Подключение классов
-//include 'class/kernel.php';
+include 'class/kernel/php.php';
+include 'class/kernel/link.php';
 include 'class/bbcode.php';
 include 'class/smile.php';
 include 'class/goverment/goverment.php';
+include 'class/goverment/leader_priv.php';
 include 'class/parliament/laws.php';
 
 //Вывод логов
