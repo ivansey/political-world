@@ -21,6 +21,7 @@ if ($goverments == 0) {
 $info = new goverment\info($id);
 $gover_info = $info->info();
 
+$leader_priv = new goverment\leader_priv($id);
 
 $king_sql = $conn->query("SELECT * FROM `users` WHERE `id` = " . $gover_info['leader'] . " ")->fetch();
 $region = $conn->query("SELECT * FROM `regions` WHERE `id` = " . $gover_info['pri_reg'] . " ")->fetch();
@@ -34,7 +35,7 @@ echo '
     <div class="block-up">
     <div class="block-info">
         Название: ' . $gover_info['name'] . ' <br>
-        Глава: ' . idtoname($gover_info['leader']) . ' <br>
+        Глава: ' . idtoname($gover_info['leader']) . '<a href="view_leader_priv.php?user_id=' . $gover_info['leader'] . '">[i]</a> <br>
         Столица: <a href="../regions/viev.php?id=' . $region['id'] . '">' . $region['name'] . '</a> <br>
         Строй: ' . $type . ' <br>
     </div>
@@ -61,6 +62,9 @@ if ($gover_info['leader'] == $user['id'] AND $parl_sql == 0) {
 } elseif ($parl_sql == 1) {
     echo '<div class="a"><a href="/parliament/index.php?id=' . $id . '">Парламент</a></div>';
     echo '<div class="a"><a href="elections/index.php?id=' . $id . '">Выборы</a></div>';
+}
+if ($leader_priv->leader == $user['id']) {
+    echo '<div class="a"><a href="add_law.php?id=' . $id .'">Издание закона</a></div>';
 }
 if ($_POST['party_plus']) {
     $conn->query("UPDATE `party` SET `gover` = " . $gover_info['id'] . " WHERE `id` = " . $user['party'] . " ");
