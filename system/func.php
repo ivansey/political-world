@@ -5,8 +5,8 @@ require_once('db_connect.php');
 //include 'class/kernel.php';
 include 'class/bbcode.php';
 include 'class/smile.php';
-include 'class/goverment.php';
-include 'class/laws.php';
+include 'class/goverment/goverment.php';
+include 'class/parliament/laws.php';
 
 //Вывод логов
 function php_error_log()

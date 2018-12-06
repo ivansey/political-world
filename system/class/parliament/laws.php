@@ -68,11 +68,18 @@ class laws
     public static function sussed_laws($law_id) {
         global $conn;
         $law_sql = $conn->query("select * from elections_law where id = " . $law_id)->fetch();
+        $time = date("Y-m-d H:i:s");
+        $datetime = strtotime($time) + strtotime("0000-00-01 00:00:00") - strtotime("0000-00-00 00:00:00");
+        $sql_time = date("Y-m-d H:i:s", $datetime);
         if ($law_sql['agree'] > $law_sql['disagree']) {
             if ($law_sql['type'] == 'change_name') {
-                goverment\info::change_name($law_sql['gover_id'], $law_sql['value']);
+                if ($law_sql['time'] < $sql_time) {
+                    goverment\info::change_name($law_sql['gover_id'], $law_sql['value']);
+                }
             } elseif ($law_sql['type'] == 'change_priv_leader') {
-                goverment\info::change_priv_leader($law_sql['gover_id'], $law_sql);
+                if ($law_sql['time'] < $sql_time) {
+                    goverment\info::change_priv_leader($law_sql['gover_id'], $law_sql);
+                }
             }
         }
         laws::clean_elections_law_logs($law_id);

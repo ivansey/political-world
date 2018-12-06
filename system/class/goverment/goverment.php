@@ -91,19 +91,19 @@ class info
     {
         global $conn;
         $conn->query("update goverment set name = '" . $value . "' where id = " . $gover_id);
-        self::notifi('Изменено название  государства', $gover_id);
+        //self::notifi('Изменено название  государства', $gover_id);
     }
 
     public static function change_priv_leader($gover_info, array $priv_lead)
     {
         global $conn;
         $conn->query("update gover_leader_priv set change_info = " . $priv_lead['priv_lead_gov_info'] . ", change_parl = " . $priv_lead['priv_lead_parl'] . ", change_economic_laws = " . $priv_lead['priv_lead_eco_laws'] . ", change_army = " . $priv_lead['priv_lead_army'] . ", change_special_laws = " . $priv_lead['priv_lead_spec_laws'] . ", change_contract = " . $priv_lead['priv_lead_contract'] . " where id = " . $gover_info);
-        self::notifi('Изменение привелегий лидера государства на:<br>
-    Изменение информации' . $_POST['change_info'] . '<br>
-        Парламент' . $_POST['change_parl'] . '<br>
-        Экономика' . $_POST['change_economic_laws'] . '<br> 
-        Армия' . $_POST['change_army'] . '<br>
-        Спец. законы' . $_POST['change_special_laws'] . '<br>
-        Соглашения' . $_POST['change_contract'], $gover_info);
+        //self::notifi('Изменение привелегий лидера государства на:<br>
+//    Изменение информации' . $_POST['change_info'] . '<br>
+//        Парламент' . $_POST['change_parl'] . '<br>
+//        Экономика' . $_POST['change_economic_laws'] . '<br>
+//        Армия' . $_POST['change_army'] . '<br>
+//        Спец. законы' . $_POST['change_special_laws'] . '<br>
+//        Соглашения' . $_POST['change_contract'], $gover_info);
     }
 }
