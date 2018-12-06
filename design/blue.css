@@ -206,8 +206,10 @@ input[type=text] {
 }
 
 .chat-fake-frame {
-    width: 400px;
+    width: 150px;
     height: 100%;
+    text-align: left;
+    padding: 1px;
 }
 
 .avatar {
