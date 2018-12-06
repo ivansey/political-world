@@ -6,6 +6,21 @@ banned_chat($user);
 ?>
     <div class="block-up">
         <iframe name="chat" id="chat" height="500" width="275" src="engine.php#down"></iframe>
+        <!--<div class="chat-fake-frame"><?php
+            $user_design = $conn->query("SELECT * FROM `styles` WHERE `id` = '" . $user[style] . "' LIMIT 1")->fetch();
+            echo '<link rel="stylesheet" href="' . $user_design["path"] . '" type="text/css">';
+            echo '<div class="chat" id="chat">';
+            $messages = $conn->query("SELECT * FROM `chat`");
+            while($message=$messages->fetch()){
+                $time = date("H:i", strtotime($message['time']));
+                $text = $message['text'];
+                $text = text\BBcode::tohtml($text, true);
+                $text = text\smile::tosmile($text);
+                $msg = $message['name'] . " [" . $time . "] " . " : " . $text . "<br>";
+                echo($msg);
+            }
+            echo '</div>';
+            ?></div>-->
         <form action="" method="post" target="">
             <div class="block-info-down">
                 <input type="text" name="message" size="25">
