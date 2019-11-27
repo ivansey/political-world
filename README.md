@@ -1,85 +1,80 @@
 # political-world
-Source code Political World (RU)
+Source code Political World
 
-Исходный код политического симулятора Political World
+Source code political simulator Political World
 
-Используется php 7.1, mysql
+Requirement: PHP 7.1, MySQL
 
-<h4>Установка</h4>
+<h4>Install: </h4>
 
-1) Для установки необходимо создать базу данных и импортировать дамп базы данных с разметкой
-2) Необходимо создать файл system/db_connect.php с следующим содержимым:
+1) Create database and import dump file in database
+2) Create file system/db_connect.php and connect to database using PDO
+3) Ready
 
-3) Готово
-
-<h4>Описание каталогов и файлов</h4>
+<h4>Description catalogs and files</h4>
 
 <h5>admin</h5> 
-Админ-панель игры
+Admin-panel
 
 <h5>articles</h5>
-Статьи
+Articlee
 
 <h5>chat</h5>
-Общий чат
+General chat
 
 <h5>delete</h5>
-Скрипты удаления 
+Scripts delete 
 
 <h5>design</h5>
-Файлы CSS-стилей и изображений
+CSS-styles and images
 
 <h5>erros</h5>
-Страницы ошибок
+Error pages
 
 <h5>fb</h5>
-Взод через Facebook
+FaceBook login
 
 <h5>goverment</h5>
-Государства
+Goverments
 
 <h5>mail</h5>
-Личные сообщения
+Private messages 
 
 <h5>parliament</h5>
-Парламент государства
+Parlament goverment
 
 <h5>party</h5>
-Партии
+Political party
 
 <h5>regions</h5>
-Регионы
+Regions
 
 <h5>scripts</h5>
-JavaScripts - скрипты
+JS files
 
 <h5>setting</h5>
-Настройки для юзера
+User settings
 
 <h5>store</h5>
-Склад юзера
+User store
 
 <h5>system</h5> 
-Системные файлы
+System files, classes
 
 <h5>users</h5>
-Информация о пользователе
+User info
 
 <h5>work</h5>
-Работа
+Work and factory
 
 <h5>game.php</h5>
-Главное меню игры
+Main menu
 
 <h5>index.php</h5>
-Страница входа
-
-<h5>install_db.php</h5>
-SHELL-скрипт для установки скрипта соединения с БД
+Page login
 
 <h5>login_user.php</h5>
-Обработка входа
+Login processing
 
 <h5>save_user.php</h5>
-Обработка регистрации
-
+Registraton processing
